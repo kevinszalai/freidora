@@ -1,0 +1,44 @@
+{
+  "name": "Aire Caliente · Recetas para freidora de aire",
+  "short_name": "Aire Caliente",
+  "description": "Recetas paso a paso para freidora de aire, con timer, lista de compras y guía para principiantes.",
+  "lang": "es-AR",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffd23f",
+  "theme_color": "#ffd23f",
+  "categories": [
+    "food",
+    "lifestyle"
+  ],
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "¿Qué cocino con lo que tengo?",
+      "url": "./#heladera"
+    },
+    {
+      "name": "Tabla de tiempos",
+      "url": "./#tabla"
+    }
+  ]
+}
