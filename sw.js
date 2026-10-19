@@ -1,5 +1,5 @@
-// Aire Caliente · service worker (versión 958ec1d4)
-const CACHE = "aire-caliente-958ec1d4";
+// Aire Caliente · service worker (versión 03476dbb)
+const CACHE = "aire-caliente-03476dbb";
 const CORE = ["./", "./index.html", "./manifest.webmanifest",
   "./icon-192.png", "./icon-512.png", "./icon-maskable-512.png",
   "./apple-touch-icon.png", "./favicon-32.png"];

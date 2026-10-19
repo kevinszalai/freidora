@@ -256,7 +256,33 @@ main .wrap{padding-block:34px 70px;display:flex;flex-direction:column;gap:72px}
 .cook{position:fixed;inset:0;z-index:60;background:var(--panel);color:var(--panel-ink);display:flex;flex-direction:column;padding:calc(14px + env(safe-area-inset-top,0px)) max(18px,env(safe-area-inset-right,0px)) calc(18px + env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px))}
 .cook-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .cook-top .close{border:2px solid var(--panel-line);background:var(--panel-2);color:var(--panel-ink);border-radius:999px;padding:8px 16px;font-weight:700}
-.cook-top{flex-wrap:wrap}
+.cook-top{flex-wrap:nowrap;gap:10px}
+.cook-top .exit{flex:none}
+.tempchip.off{background:var(--panel-2);color:var(--panel-muted);font-weight:600;font-size:.9rem}
+.cook-tools{display:flex;gap:8px;margin-top:10px}
+.cook-tools button{flex:1;border:2px solid var(--panel-line);background:var(--panel-2);color:var(--panel-ink);border-radius:14px;padding:10px 8px;font-weight:800;font-size:.95rem;min-height:48px}
+.cook-tools button[aria-pressed="true"]{border-color:var(--sun);color:var(--sun)}
+.tbanners{display:flex;flex-direction:column;gap:6px}
+.cook-main{min-height:0;overflow-y:auto;justify-content:safe center;overscroll-behavior:contain}
+.runhint{color:var(--panel-muted);font-size:.95rem}
+html.bigtext .ring{width:150px;height:150px}
+html.bigtext .ring .t{font-size:2rem}
+html.bigtext .nextprev{display:none}
+html.bigtext .cook-main .bigfood{font-size:4rem}
+html.bigtext .nav a{font-size:.68rem;white-space:nowrap}
+.emodet summary{font-weight:800;font-size:.92rem;cursor:pointer;padding:8px 0}
+.emodet summary small{font-weight:500;color:var(--muted)}
+.morecols{display:flex;flex-direction:column;gap:8px}
+.chips-row{display:flex;gap:8px;flex-wrap:wrap}
+.colchip{border:var(--bw) solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:8px 14px;font-weight:700}
+.cook-top .close.warn{background:var(--tomato);border-color:var(--tomato);color:#fff}
+.prep{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px;text-align:left;max-width:520px;width:100%}
+.prep li{display:flex;gap:14px;align-items:flex-start;font-family:var(--f-display);font-size:clamp(1.15rem,3.6vw,1.45rem);font-weight:500;line-height:1.35}
+.prep li>b{flex:none;width:36px;height:36px;border-radius:50%;background:var(--sun);color:#1f1b16;display:grid;place-items:center;font-size:1.05rem}
+.prep mark{background:var(--sun);color:#1f1b16;border-radius:8px;padding:0 .2em}
+.inl{border:2px solid var(--panel-line);background:var(--panel-2);color:var(--panel-ink);border-radius:999px;padding:4px 12px;font-weight:700;font-size:.95rem;margin-top:6px}
+.swipehint{color:var(--panel-muted)}
+.halfinfo{color:var(--sun);font-weight:700}
 .cook-top .close{min-width:44px;min-height:44px}
 .tempchip{white-space:nowrap;display:inline-flex;align-items:center;gap:8px;background:var(--sun);color:#1f1b16;font-family:var(--f-display);font-weight:700;padding:6px 14px;border-radius:999px;font-size:1rem}
 .progress{display:flex;gap:6px;margin:16px 0}
@@ -392,7 +418,7 @@ main .wrap{padding-block:34px 70px;display:flex;flex-direction:column;gap:72px}
 .btn:disabled{opacity:.45}
 .hero-cta{display:flex;gap:10px;flex-wrap:wrap}
 
-.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;font-weight:700;z-index:80;animation:pop .25s;white-space:nowrap}
+.toast{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top,0px));max-width:calc(100% - 32px);white-space:normal;text-align:center;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:18px;font-weight:700;z-index:80;animation:pop .25s}
 
 @media (max-width:900px){.doors{grid-template-columns:1fr}.fridge,.guide-wrap,.convert-wrap{grid-template-columns:1fr}}
 @media (max-width:700px){
@@ -404,8 +430,9 @@ main .wrap{padding-block:34px 70px;display:flex;flex-direction:column;gap:72px}
   .nav a.hide-m{display:none}
   body{padding-bottom:calc(70px + env(safe-area-inset-bottom,0px))}
   .cartfab{bottom:calc(84px + env(safe-area-inset-bottom,0px));padding:10px 14px}
-  .toast{bottom:calc(140px + env(safe-area-inset-bottom,0px))}
+
   .floaters span:nth-child(n+3){display:none}
+  .how{flex-direction:column;align-items:flex-start;gap:8px}
   .qrow{grid-template-columns:34px minmax(0,1fr) 58px}.qrow .qmin{grid-column:2/-1}
 }
 @media (max-width:420px){.dials{gap:10px;flex-wrap:nowrap}.dial .ctl span{min-width:0;font-size:.68rem}.dial .ctl button{width:42px;height:42px}.console{padding:18px 14px}.knob{width:104px;height:104px}.knob .needle{height:38px}.spec{grid-template-columns:repeat(2,1fr)}.cat{width:72px}.cat .cat-ic{width:60px;height:60px;font-size:1.7rem}}
@@ -1764,7 +1791,7 @@ function cleanRecipe(o,keepId){ // valida y limpia una receta (propia o recibida
   if(!o||typeof o!=="object")return null;
   const str=(v,max)=>String(v==null?"":v).replace(/[<>]/g,"").trim().slice(0,max);
   const num=(v,a,b,d)=>{v=Number(v);return Number.isFinite(v)?Math.min(b,Math.max(a,v)):d};
-  const ing=(Array.isArray(o.ing)?o.ing:[]).slice(0,40).map(i=>[num(i[0],0,100000,1),UNITS.includes(i[1])?i[1]:"",str(i[2],80)]).filter(i=>i[2]);
+  const ing=(Array.isArray(o.ing)?o.ing:[]).slice(0,40).map(i=>[num(i[0],0,100000,0),UNITS.includes(i[1])?i[1]:"",str(i[2],80)]).filter(i=>i[2]);
   const stp=(Array.isArray(o.st)?o.st:[]).slice(0,25).map(x=>[str(x[0],400),Math.round(num(x[1],0,86400,0))]).filter(x=>x[0]);
   const n=str(o.n,70);if(!n||!ing.length||!stp.length)return null;
   const cat=CAT_LIST.includes(o.cat)?o.cat:"Almuerzos";
@@ -1802,7 +1829,7 @@ const LV=["","Fácil","Media","Desafío"];
 const lvl=n=>`<span class="lvl" title="Dificultad: ${LV[n]}">${[1,2,3].map(i=>`<i class="${i<=n?"on":""}"></i>`).join("")}<em>${LV[n]}</em></span>`;
 const isStarter=r=>r.lvl===1&&r.m<=15;
 function toast(t){const d=document.createElement("div");d.className="toast";d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),1800)}
-function stats(){const hn=$("#heroN");if(hn)hn.textContent=R.length;$("#statN").textContent=R.length;$("#tabN").textContent=R.length;$("#statMade").textContent=st.made.size;$("#statFav").textContent=st.favs.size;$("#madeBar").style.width=(st.made.size/R.length*100)+"%"}
+function stats(){const ps=$(".progress-strip");if(ps)ps.hidden=!st.made.size&&!st.favs.size;const hn=$("#heroN");if(hn)hn.textContent=R.length;$("#statN").textContent=R.length;$("#tabN").textContent=R.length;$("#statMade").textContent=st.made.size;$("#statFav").textContent=st.favs.size;$("#madeBar").style.width=(st.made.size/R.length*100)+"%"}
 
 /* Recetas */
 const CATS=["Todas","Desayuno","Almuerzos","Pollo","Carnes","Pescado","Verduras","Vegetariano","Congelados","Snacks","Panes","Postres"].filter(c=>c==="Todas"||R.some(r=>r.cat===c));
@@ -1857,7 +1884,8 @@ function drawShelves(){
     <div class="shelf-row"><button class="mini sticker newmini" data-new="1"><span class="mplate" style="--tone:var(--soft)"><span aria-hidden="true">➕</span></span><b>Crear mi receta</b><small>Con modo cocina y timer</small></button>${mine.slice().reverse().slice(0,11).map(miniHTML).join("")}</div></section>`;
   if(rec.length)h+=shelfHTML("👀 Seguí donde quedaste","Lo último que miraste",rec,null);
   const favs=R.filter(r=>st.favs.has(r.id));if(favs.length)h+=shelfHTML("♥ Tus favoritas","",favs,null);
-  COLS.forEach(c=>{const L=colRecipes(c);h+=shelfHTML(c.t,c.d,c.ids?L:daily(L),c.id)});
+  COLS.filter(c=>["clasicos","asado"].includes(c.id)).forEach(c=>{const L=colRecipes(c);h+=shelfHTML(c.t,c.d,c.ids?L:daily(L),c.id)});
+  h+=`<div class="morecols"><span class="label">Más colecciones</span><div class="chips-row">${COLS.filter(c=>!["clasicos","asado"].includes(c.id)).map(c=>`<button class="colchip" data-col="${c.id}">${c.t}</button>`).join("")}</div></div>`;
   $("#shelves").innerHTML=h;
 }
 function openCol(id){const c=colById(id);if(!c)return;clearFilters(true);st.col=id;render();$("#recetas").scrollIntoView({behavior:"smooth"});buzz()}
@@ -1932,7 +1960,7 @@ $("#guide").onclick=e=>{const b=e.target.closest("[data-g]");if(!b)return;st.g=+
 /* Ficha */
 let cur=null,por=0;
 const qty=(v,u)=>qtyF(v,u,por/cur.por);
-const qtyF=(v,u,fct)=>{let x=v*fct;
+const qtyF=(v,u,fct)=>{if(!v)return "a gusto";let x=v*fct;
   if(u==="g"||u==="ml"){x=Math.max(5,Math.round(x/5)*5);if(x>=1000)return String(Math.round(x/100)/10).replace(".",",")+(u==="g"?" kg":" l")}
   else if(u==="kg"){x=Math.round(x*4)/4;if(x<1)return Math.max(50,Math.round(x*20)*50)+" g"}
   else if(u==="cda"||u==="cdta"||u==="pizca")x=Math.max(.5,Math.round(x*2)/2);
@@ -1944,7 +1972,7 @@ function openSheet(id){
   st.recent=[id,...st.recent.filter(x=>x!==id)].slice(0,12);SS("aire-recent",st.recent);
   const rel=R.filter(r=>r.cat===cur.cat&&r.id!==cur.id).slice(0,6);
   const made=st.made.has(cur.id);
-  $("#scrim").hidden=false;$("#scrim").innerHTML=`<div class="sheet" role="dialog" aria-modal="true" aria-label="${esc(cur.n)}">
+  openLayer();$("#scrim").innerHTML=`<div class="sheet" role="dialog" aria-modal="true" aria-label="${esc(cur.n)}">
     <div class="sheet-hero" style="--tone:${cur.tone}"><button class="close" id="xs" aria-label="Cerrar">✕</button>
       <div class="food" aria-hidden="true">${esc(cur.e)}</div><div><span class="label">${esc(cur.cat)}${cur.own?" · ✍️ "+(cur.by?"de "+esc(cur.by):"tu receta"):""}${made?" · ✓ ya la hiciste":""}</span></div>
       <h2>${esc(cur.n)}</h2><p>${esc(cur.d)}</p>
@@ -1979,7 +2007,7 @@ function openSheet(id){
     if($("#ownPub"))$("#ownPub").onclick=requestPublish}
   $("#sheetStars").onclick=e=>{const b=e.target.closest("[data-star]");if(!b)return;setRate(cur.id,+b.dataset.star);$("#sheetStars").innerHTML=starsHTML(st.rate[cur.id]||0)};
   $("#notes").oninput=e=>{st.notes[cur.id]=e.target.value;if(!e.target.value)delete st.notes[cur.id];SS("aire-notes",st.notes)};
-  try{history.replaceState(null,"","#"+cur.id)}catch(e){}
+  try{history.replaceState(history.state,"","#"+cur.id)}catch(e){}
   $(".sheet").scrollTop=0;document.body.style.overflow="hidden";$("#xs").focus();
 }
 function drawIng(){$("#pv").textContent=por;$("#ing").innerHTML=cur.ing.map((i,k)=>{
@@ -1987,7 +2015,7 @@ function drawIng(){$("#pv").textContent=por;$("#ing").innerHTML=cur.ing.map((i,k
   return `<li><label for="ing${k}"><input type="checkbox" id="ing${k}"><span class="q">${fixed?"—":qty(i[0],i[1])}</span><span>${esc(i[2])}</span></label></li>`}).join("");ingProg()}
 function ingProg(){const a=[...document.querySelectorAll("#ing input")],c=a.filter(x=>x.checked).length;$("#ingbar").style.width=(c/a.length*100)+"%";
   $("#ingtxt").textContent=c===a.length?"¡Tenés todo! Ya podés cocinar.":c?`${c} de ${a.length} listos`:"Marcá lo que ya tenés listo."}
-function closeSheet(){$("#scrim").hidden=true;$("#scrim").innerHTML="";document.body.style.overflow="";if(!$("#shelves").hidden)drawShelves();try{if(R.some(r=>"#"+r.id===location.hash))history.replaceState(null,"",location.pathname+location.search)}catch(e){}}
+function closeSheet(fromPop){const was=!$("#scrim").hidden;$("#scrim").hidden=true;if(was&&!fromPop)popLayers(1);$("#scrim").innerHTML="";document.body.style.overflow="";if(!$("#shelves").hidden)drawShelves();try{if(R.some(r=>"#"+r.id===location.hash))history.replaceState(history.state,"",location.pathname+location.search)}catch(e){}}
 function saveMine(){SS("aire-mine",R.filter(r=>r.own).map(({own,...r})=>r))}
 function deleteMine(id){const i=R.findIndex(r=>r.id===id);if(i<0)return;R.splice(i,1);saveMine();st.favs.delete(id);SS("aire-favs",[...st.favs]);st.cart=st.cart.filter(c=>c.id!==id);saveCart();closeSheet();render();toast("Receta borrada")}
 const EMOJIS="🍗🥩🥓🌭🍔🍟🥔🍠🌽🥦🥕🍆🫑🧅🍄🧀🥚🍳🥞🍞🥐🥖🥨🥟🌮🌯🍕🥧🐟🦐🦑🧆🥗🍰🧁🍪🍫🍩🍎🍌🍐🍯⭐🔥".match(/\p{Extended_Pictographic}/gu);
@@ -1995,27 +2023,27 @@ function edRow(i){return `<div class="edrow ing-row"><input type="number" inputm
 function edStep(x,k){return `<div class="edrow step-row"><span class="sn">${k+1}</span><textarea rows="2" placeholder="Ej.: Cociná a 200 °C durante 10 minutos." aria-label="Paso" maxlength="400">${x?esc(x[0]):""}</textarea><label class="tmin">⏱ Timer<input type="number" min="0" max="600" placeholder="minutos" value="${x&&x[1]?Math.round(x[1]/60):""}" aria-label="Minutos de timer"></label><button type="button" class="rm" aria-label="Quitar">✕</button></div>`}
 function openEditor(id){
   const editing=id?R.find(r=>r.id===id):null;
-  const d=editing||LS("aire-draft")||{e:"🍗",cat:"Pollo",t:180,m:15,lvl:1,por:2,ing:[],st:[]};
-  $("#scrim").hidden=false;document.body.style.overflow="hidden";
+  const d=editing||LS("aire-draft")||{e:"",cat:"",t:180,m:15,lvl:1,por:2,ing:[],st:[]};
+  openLayer();
   $("#scrim").innerHTML=`<div class="sheet" role="dialog" aria-modal="true" aria-label="${editing?"Editar receta":"Crear mi receta"}">
-   <div class="sheet-hero" style="--tone:#e4d6ff"><button class="close" id="xs" aria-label="Cerrar">✕</button><div class="food" id="edEmojiBig" aria-hidden="true">${esc(d.e||"🍗")}</div><h2>${editing?"Editar receta":"Crear mi receta"}</h2><p>${editing?"Cambiá lo que quieras y guardá.":"Cargala una vez y cocinala con el modo paso a paso, timer y voz. Se guarda en este dispositivo."}</p></div>
+   <div class="sheet-hero" style="--tone:#e4d6ff"><button class="close" id="xs" aria-label="Cerrar">✕</button><div class="food" id="edEmojiBig" aria-hidden="true">${esc(d.e||"✍️")}</div><h2>${editing?"Editar receta":"Crear mi receta"}</h2><p>${editing?"Cambiá lo que quieras y guardá.":"Cargala una vez y cocinala con el modo paso a paso, timer y voz. Se guarda en este dispositivo."}</p></div>
    <form class="sheet-body editor" id="edForm" novalidate>
     <section><label class="flabel" for="edN">Nombre de la receta</label><input id="edN" type="text" maxlength="70" placeholder="Ej.: Milanesas de la abuela" value="${esc(d.n||"")}">
       <label class="flabel" for="edD">Una línea que la describa <small>(opcional)</small></label><input id="edD" type="text" maxlength="120" placeholder="Ej.: Crocantes y jugosas, como los domingos" value="${esc(d.d||"")}"></section>
-    <section><span class="flabel">Elegí un dibujito</span><div class="emojis" id="edE" role="group" aria-label="Dibujito">${EMOJIS.map(x=>`<button type="button" data-e="${x}" aria-pressed="${x===d.e}">${x}</button>`).join("")}</div></section>
-    <section class="grid2"><label class="flabel" for="edCat">Categoría<select id="edCat">${CAT_LIST.map(c=>`<option ${c===d.cat?"selected":""}>${c}</option>`).join("")}</select></label>
+    <section class="grid2"><label class="flabel" for="edCat">Categoría<select id="edCat"><option value="">Elegí una</option>${CAT_LIST.map(c=>`<option ${c===d.cat?"selected":""}>${c}</option>`).join("")}</select></label>
       <label class="flabel" for="edPor">Porciones<input id="edPor" type="number" min="1" max="30" value="${d.por||2}"></label>
-      <label class="flabel" for="edT">Temperatura (°C)<input id="edT" type="number" min="80" max="230" step="10" value="${d.t||180}"></label>
+      <label class="flabel" for="edT">Temperatura principal (°C)<input id="edT" type="number" min="80" max="230" step="10" value="${d.t||180}"></label>
       <label class="flabel" for="edM">Minutos en la freidora<input id="edM" type="number" min="1" max="600" value="${d.m||15}"></label></section>
     <section><span class="flabel">Dificultad</span>${seg("edLvl",[[1,"Fácil"],[2,"Media"],[3,"Desafío"]],d.lvl||1)}</section>
-    <section><h3>Ingredientes</h3><p class="hint">Cantidad, unidad y nombre. Usá "unid." para cosas que se cuentan (2 huevos).</p><div id="edIng">${(d.ing&&d.ing.length?d.ing:[null,null,null]).map(edRow).join("")}</div><button type="button" class="ghost addrow" id="addIng">+ Sumar ingrediente</button></section>
+    <section><h3>Ingredientes</h3><p class="hint">Escribí el ingrediente y abajo la cantidad. Usá "unid." para cosas que se cuentan (2 huevos). Si no lleva cantidad (sal, pimienta), dejala vacía.</p><div id="edIng">${(d.ing&&d.ing.length?d.ing:[null,null,null]).map(edRow).join("")}</div><button type="button" class="ghost addrow" id="addIng">+ Sumar ingrediente</button></section>
     <section><h3>Pasos</h3><p class="hint">Si un paso tiene espera, poné los minutos y el modo cocina te arma el timer.</p><div id="edSt">${(d.st&&d.st.length?d.st:[null,null]).map(edStep).join("")}</div><button type="button" class="ghost addrow" id="addSt">+ Sumar paso</button></section>
+    <details class="emodet"${d.e?" open":""}><summary>Elegí un dibujito <small>(opcional, si no elegimos uno por vos)</small></summary><div class="emojis" id="edE" role="group" aria-label="Dibujito">${EMOJIS.map(x=>`<button type="button" data-e="${x}" aria-pressed="${x===d.e}">${x}</button>`).join("")}</div></details>
     <section><label class="flabel" for="edTip">Tu truco <small>(opcional)</small></label><textarea id="edTip" rows="2" maxlength="300" placeholder="Ej.: El secreto es dejarlas reposar 10 minutos antes.">${esc(d.tip||"")}</textarea>
       <label class="flabel" for="edBy">Tu nombre <small>(opcional, aparece si la compartís)</small></label><input id="edBy" type="text" maxlength="40" placeholder="Ej.: Marta" value="${esc(d.by||"")}"></section>
     <p class="formerr" id="edErr" role="alert" hidden></p>
     <div class="sheet-actions"><button type="submit" class="start press">${editing?"💾 Guardar cambios":"✅ Guardar mi receta"}</button></div>
    </form></div>`;
-  let emoji=d.e||"🍗";
+  let emoji=d.e||"";
   const lvlGroup=$("[data-set=edLvl]");let lvl=d.lvl||1;
   lvlGroup.onclick=e=>{const b=e.target.closest("[data-v]");if(!b)return;lvl=+b.dataset.v;lvlGroup.querySelectorAll("[data-v]").forEach(x=>x.setAttribute("aria-pressed",x===b));draft()};
   $("#edE").onclick=e=>{const b=e.target.closest("[data-e]");if(!b)return;emoji=b.dataset.e;$("#edE").querySelectorAll("[data-e]").forEach(x=>x.setAttribute("aria-pressed",x===b));$("#edEmojiBig").textContent=emoji;draft()};
@@ -2024,7 +2052,7 @@ function openEditor(id){
   $("#addSt").onclick=()=>{$("#edSt").insertAdjacentHTML("beforeend",edStep(null,$("#edSt").children.length));$("#edSt").lastElementChild.querySelector("textarea").focus()};
   $("#edForm").addEventListener("click",e=>{const rm=e.target.closest(".rm");if(!rm)return;const row=rm.closest(".edrow"),box=row.parentElement;if(box.children.length>1)row.remove();else row.querySelectorAll("input,textarea").forEach(x=>x.value="");renum();draft()});
   const collect=()=>({id:editing?editing.id:undefined,n:$("#edN").value,d:$("#edD").value,e:emoji,cat:$("#edCat").value,por:$("#edPor").value,t:$("#edT").value,m:$("#edM").value,lvl,
-    ing:[...document.querySelectorAll("#edIng .ing-row")].map(r=>{const q=r.querySelectorAll("input");return [q[0].value===""?1:+String(q[0].value).replace(",","."),r.querySelector("select").value,q[1].value]}),
+    ing:[...document.querySelectorAll("#edIng .ing-row")].map(r=>{const q=r.querySelectorAll("input");return [q[0].value===""?0:+String(q[0].value).replace(",","."),r.querySelector("select").value,q[1].value]}),
     st:[...document.querySelectorAll("#edSt .step-row")].map(r=>[r.querySelector("textarea").value,(+r.querySelector("input").value||0)*60]),tip:$("#edTip").value,by:$("#edBy").value});
   const draft=()=>{if(!editing)SS("aire-draft",collect())};
   $("#edForm").addEventListener("input",draft);
@@ -2034,6 +2062,9 @@ function openEditor(id){
     if(!raw.ing.some(i=>i[2].trim()))err.push("sumá al menos un ingrediente");
     if(!raw.st.some(x=>x[0].trim()))err.push("escribí al menos un paso");
     if(err.length){$("#edErr").hidden=false;$("#edErr").textContent="Para guardarla, "+err.join(", ")+".";$("#edErr").scrollIntoView({block:"center",behavior:"smooth"});return}
+    if(!raw.cat||!raw.e){const w=norm(raw.n+" "+raw.ing.map(i=>i[2]).join(" "));
+      const guess=/torta|budín|budin|galle|cookie|postre|chocolate|dulce|banana|manzana|flan/.test(w)?["Postres","🍰"]:/pollo|pechuga|muslo|alita/.test(w)?["Pollo","🍗"]:/carne|bife|milanesa|vacío|hamburguesa|albóndiga|matambre|cerdo|bondiola/.test(w)?["Carnes","🥩"]:/pescado|merluza|salmón|atún|langostino/.test(w)?["Pescado","🐟"]:/huevo|tostada|desayuno|avena/.test(w)?["Desayuno","🍳"]:/papa|batata|calabaza|verdura|brócoli|zapallo|berenjena|zucchini/.test(w)?["Verduras","🥔"]:/pan|pizza|fugazza|chipá/.test(w)?["Panes","🍞"]:/empanada|bocadito|snack|nacho|croqueta/.test(w)?["Snacks","🥟"]:["Almuerzos","🍽️"];
+      raw.cat=raw.cat||guess[0];raw.e=raw.e||guess[1]}
     const r=cleanRecipe({...raw,id:editing?editing.id:undefined},!!editing);
     if(editing){const i=R.findIndex(x=>x.id===editing.id);R[i]=r}else R.push(r);
     saveMine();try{localStorage.removeItem("aire-draft")}catch(_){}
@@ -2044,7 +2075,7 @@ function openEditor(id){
 async function openShared(tok){let r=null;try{r=await unpackRecipe(tok)}catch(e){}
   if(!r){toast("No pudimos abrir esa receta. Pedile a quien te la mandó que la comparta de nuevo.");return}
   const dupe=R.find(x=>x.own&&x.n===r.n&&JSON.stringify(x.st)===JSON.stringify(r.st));
-  $("#scrim").hidden=false;document.body.style.overflow="hidden";
+  openLayer();
   $("#scrim").innerHTML=`<div class="sheet" role="dialog" aria-modal="true" aria-label="Receta compartida">
    <div class="sheet-hero" style="--tone:${r.tone}"><button class="close" id="xs" aria-label="Cerrar">✕</button><div class="food" aria-hidden="true">${esc(r.e)}</div><span class="label">📩 ${r.by?esc(r.by)+" te compartió":"Te compartieron"} una receta</span><h2>${esc(r.n)}</h2>${r.d?`<p>${esc(r.d)}</p>`:""}
     <div class="spec"><div><b>${r.t}°</b><small>Temperatura</small></div><div><b>${r.m} min</b><small>Tiempo</small></div><div><b>${r.ing.length}</b><small>Ingredientes</small></div><div><b>${r.st.length}</b><small>Pasos</small></div></div></div>
@@ -2057,7 +2088,7 @@ async function openShared(tok){let r=null;try{r=await unpackRecipe(tok)}catch(e)
    </div></div>`;
   $("#xs").onclick=closeSheet;$("#scrim").onclick=e=>{if(e.target.id==="scrim")closeSheet()};
   $("#impSave").onclick=()=>{if(dupe){openSheet(dupe.id);return}R.push(r);saveMine();render();toast("Guardada en tus recetas ✍️");openSheet(r.id)};
-  try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}
+  try{history.replaceState(history.state,"",location.pathname+location.search)}catch(e){}
 }
 /* Pedir que se publique */
 async function requestPublish(){
@@ -2073,6 +2104,18 @@ async function requestPublish(){
    </div></div>`;
   $("#xs").onclick=closeSheet;$("#pubCopy").onclick=()=>copyText(body,"Texto copiado");
 }
+/* Botón "atrás" del celular: cierra la capa de arriba en vez de salir de la app */
+let ignorePop=0,pendingPop=0;
+const depth=()=>{try{return (history.state&&history.state.ac)||0}catch(e){return 0}};
+function pushLayer(){try{history.pushState({ac:depth()+1},"",location.href)}catch(e){}}
+function popLayers(n){pendingPop+=n;if(pendingPop!==n)return;
+  setTimeout(()=>{const k=Math.min(pendingPop,depth());pendingPop=0;if(k<=0)return;ignorePop++;try{history.go(-k)}catch(e){ignorePop--}},0)}
+function openLayer(){if($("#scrim").hidden)pushLayer();$("#scrim").hidden=false;document.body.style.overflow="hidden"}
+window.addEventListener("popstate",()=>{if(ignorePop>0){ignorePop--;return}
+  const d=$("#drawer");if(!$("#cook").hidden&&d&&!d.hidden){d.hidden=true;pushLayer();return}
+  if(!$("#cook").hidden){if(anyRun()){pushLayer();toast("Para salir del modo cocina tocá ✕ Salir");return}endCook(true);return}
+  if(!$("#slot").hidden){$("#slot").hidden=true;return}
+  if(!$("#scrim").hidden)closeSheet(true)});
 function starsHTML(n){return [1,2,3,4,5].map(i=>`<button data-star="${i}" aria-label="${i} de 5" aria-pressed="${i<=n}">${i<=n?"★":"☆"}</button>`).join("")}
 function setRate(id,n){if(st.rate[id]===n)delete st.rate[id];else st.rate[id]=n;SS("aire-rate",st.rate);render()}
 async function copyText(t,msg){try{await navigator.clipboard.writeText(t);toast(msg)}catch(e){
@@ -2101,17 +2144,19 @@ function toggleCart(id,p){buzz();const c=inCart(id);if(c&&c.por===p){st.cart=st.
 function cartBtn(){const b=$("#sheetCart");if(!b)return;const c=inCart(cur.id);b.textContent=c&&c.por===por?"✓ En tu lista · Quitar":c?"🛒 Actualizar a "+por+" porciones":"🛒 Sumar a la lista";b.classList.toggle("on",!!c)}
 function cartFab(){const b=$("#cartFab");b.hidden=!st.cart.length;$("#cartN").textContent=st.cart.length}
 function cartItems(){const M=new Map();st.cart.forEach(c=>{const r=R.find(x=>x.id===c.id);if(!r)return;const f=c.por/r.por;
-  r.ing.forEach(i=>{const key=norm(i[2])+"|"+i[1];const o=M.get(key)||{n:i[2],u:i[1],v:0,from:[]};o.v+=i[0]*f;o.from.push(r.e);M.set(key,o)})});
-  return [...M.entries()].map(([k,o])=>({k,txt:(o.u===""&&/rocío|sal y|a gusto/.test(o.n)?"":qtyF(o.v,o.u,1)+" ")+o.n,from:o.from})).sort((a,b)=>a.txt.localeCompare(b.txt,"es"))}
+  const short=r.n.split(/ (con|a la|al|de la|del|en) /)[0];
+  r.ing.forEach(i=>{const nn=norm(i[2]);const seas=/^(sal|pimienta|sal y pimienta|sal gruesa|aceite en aerosol|rocío de aceite|oregano|orégano)$/.test(nn)||!i[0];
+    const key=seas?nn:nn+"|"+i[1];const o=M.get(key)||{n:i[2],u:i[1],v:0,from:[],seas};if(!seas)o.v+=i[0]*f;if(!o.from.includes(short))o.from.push(short);M.set(key,o)})});
+  return [...M.entries()].map(([k,o])=>({k,txt:(o.seas||(o.u===""&&/rocío|sal y|a gusto/.test(o.n))?"":qtyF(o.v,o.u,1)+" ")+o.n,from:o.from,sort:norm(o.n)})).sort((a,b)=>a.sort.localeCompare(b.sort,"es"))}
 function openCart(){
-  $("#scrim").hidden=false;document.body.style.overflow="hidden";
+  openLayer();
   const items=cartItems();
   $("#scrim").innerHTML=`<div class="sheet" role="dialog" aria-modal="true" aria-label="Lista de compras">
     <div class="sheet-hero" style="--tone:#cfe5ff"><button class="close" id="xs" aria-label="Cerrar">✕</button><div class="food" aria-hidden="true">🛒</div><h2>Lista de compras</h2><p>Todo lo que necesitás para ${st.cart.length} receta${st.cart.length>1?"s":""}. Tachá lo que ya tenés o ya compraste.</p></div>
     <div class="sheet-body">
       <section><h3 style="margin-bottom:10px">Recetas</h3><div class="cartrec">${st.cart.map(c=>{const r=R.find(x=>x.id===c.id);return r?`<div class="crow"><span class="em" style="--tone:${r.tone}">${r.e}</span><span><b>${esc(r.n)}</b><small>${c.por} porciones</small></span><button data-rm="${r.id}" aria-label="Quitar ${esc(r.n)}">✕</button></div>`:""}).join("")}</div></section>
       <section><div class="sec-head" style="margin:0;align-items:center"><h3>Para comprar</h3><span class="label" id="gotN"></span></div>
-        <ul class="ing" id="cartList">${items.map((it,k)=>`<li><label for="ci${k}"><input type="checkbox" id="ci${k}" data-k="${esc(it.k)}" ${st.got.has(it.k)?"checked":""}><span>${esc(it.txt)}</span><small class="from" aria-hidden="true">${it.from.join("")}</small></label></li>`).join("")}</ul></section>
+        <ul class="ing" id="cartList">${items.map((it,k)=>`<li><label for="ci${k}"><input type="checkbox" id="ci${k}" data-k="${esc(it.k)}" ${st.got.has(it.k)?"checked":""}><span>${esc(it.txt)}</span><small class="from">${esc(it.from.join(" · "))}</small></label></li>`).join("")}</ul></section>
       <div class="sheet-actions"><button class="start press" id="copyList">📋 Copiar lista</button></div>
       <button class="ghost" id="emptyCart" style="align-self:center">Vaciar la lista</button>
     </div></div>`;
@@ -2127,24 +2172,42 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"){if(!$("#slot").hidd
 
 /* Modo cocina */
 let step=0,lock=null,actx=null;
-const T={step:-1,left:0,tot:0,iv:null,done:false};const CR=2*Math.PI*84;
-function stopT(){clearInterval(T.iv);T.iv=null}
-function resetT(){stopT();T.step=-1;T.done=false}
+const CR=2*Math.PI*84;
+/* Timers: uno por paso, pueden correr varios a la vez */
+const TM={};let tickIv=null;
+const anyRun=()=>Object.values(TM).some(t=>t.run);
+function ensureTick(){if(anyRun()&&!tickIv)tickIv=setInterval(tickAll,1000);if(!anyRun()&&tickIv){clearInterval(tickIv);tickIv=null}}
+function resetT(){Object.keys(TM).forEach(k=>delete TM[k]);ensureTick()}
 async function wake(){try{lock=await navigator.wakeLock?.request("screen")}catch(e){}}
 function beep(){try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();[0,.35,.7].forEach(d=>{const o=actx.createOscillator(),g=actx.createGain();o.frequency.value=880;o.connect(g);g.connect(actx.destination);g.gain.setValueAtTime(.2,actx.currentTime+d);g.gain.exponentialRampToValueAtTime(.001,actx.currentTime+d+.3);o.start(actx.currentTime+d);o.stop(actx.currentTime+d+.3)})}catch(e){}}
-function startCook(i){step=i;resetT();$("#cook").hidden=false;wake();try{actx=actx||new (window.AudioContext||window.webkitAudioContext)()}catch(e){}drawCook()}
-function endCook(){resetT();try{HAS_TTS&&speechSynthesis.cancel()}catch(e){}$("#cook").hidden=true;try{lock?.release()}catch(e){}}
-function tUI(){
-  if($("#tt")&&T.step===step){$("#tt").textContent=T.done?"¡Ya!":fmt(Math.max(0,T.left));$("#arc").setAttribute("stroke-dashoffset",CR*(1-T.left/T.tot));$("#ring").classList.toggle("done",T.done);
-    $("#tg").textContent=T.done?"✓ Terminado":T.iv?"❚❚ Pausar":(T.left<T.tot?"▶ Seguir":"▶ Iniciar timer")}
-  const b=$("#tbanner");if(b){const show=T.step>=0&&T.step!==step&&(!!T.iv||T.done);b.hidden=!show;
-    if(show)b.innerHTML=`⏱ Timer del paso ${T.step+1}: <b class="mono">${T.done?"¡terminó!":fmt(T.left)}</b><span>Ver ›</span>`;b.classList.toggle("done",T.done)}
-}
+function startCook(i){step=i===0?-1:i;resetT();if($("#cook").hidden)pushLayer();$("#cook").hidden=false;wake();try{actx=actx||new (window.AudioContext||window.webkitAudioContext)()}catch(e){}drawCook()}
+function endCook(fromPop){resetT();try{HAS_TTS&&speechSynthesis.cancel()}catch(e){}$("#cook").hidden=true;try{lock?.release()}catch(e){}if(!fromPop)popLayers(1)}
 const HAS_TTS=(()=>{try{return "speechSynthesis" in window&&"SpeechSynthesisUtterance" in window}catch(e){return false}})();
 function say(t){if(!HAS_TTS)return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t.replace(/°C/g," grados"));u.lang="es-AR";u.rate=.95;
   const v=speechSynthesis.getVoices().find(v=>/^es(-|_)(AR|419|US|MX)/i.test(v.lang))||speechSynthesis.getVoices().find(v=>/^es/i.test(v.lang));if(v)u.voice=v;speechSynthesis.speak(u)}catch(e){}}
-function tTick(){T.left--;if(T.left<=0){T.left=0;stopT();T.done=true;beep();if(st.voice)say(`Terminó el timer del paso ${T.step+1}`);try{navigator.vibrate?.([300,150,300])}catch(e){}}tUI()}
+function halfMsg(t){if(!/(a la mitad|a mitad|sacudiendo|moviendo|mezclando a la mitad|girando|dando vuelta|vuelta a la mitad)/i.test(t))return "";
+  return /sacud/i.test(t)?"sacudí el canasto":/girando|gir/i.test(t)?"girá lo que estás cocinando":/vuelta/i.test(t)?"dalo vuelta":"mové la comida para que se dore parejo"}
+function tickAll(){
+  for(const [k,t] of Object.entries(TM)){if(!t.run)continue;t.left--;
+    if(!t.half&&t.flip&&t.tot>=180&&t.left===Math.floor(t.tot/2)){t.half=true;beep();try{navigator.vibrate?.([200,100,200])}catch(e){}
+      toast("🔄 Paso "+(+k+1)+": mitad del tiempo, "+t.flip);if(st.voice)say("Mitad del tiempo. "+t.flip)}
+    if(t.left<=0){t.left=0;t.run=false;t.done=true;beep();if(st.voice)say(`Terminó el timer del paso ${+k+1}`);try{navigator.vibrate?.([300,150,300])}catch(e){}}}
+  ensureTick();tUI()}
+function tUI(){
+  const s=cur&&cur.st[step];
+  if($("#tt")&&s){const t=TM[step];const left=t?t.left:s[1],tot=t?t.tot:s[1],done=t&&t.done,run=t&&t.run;
+    $("#tt").textContent=done?"¡Listo!":fmt(Math.max(0,left));$("#arc").setAttribute("stroke-dashoffset",CR*(1-left/tot));$("#ring").classList.toggle("done",!!done);
+    const tg=$("#tg"),tm=$("#tm"),tr=$("#tr");
+    if(done){tg.textContent=step<cur.st.length-1?"Listo · Siguiente paso →":"Listo · Terminar →";tg.dataset.act="next";tm.hidden=false;tr.hidden=true}
+    else if(run){tg.textContent="❚❚ Pausar";tg.dataset.act="pause";tm.hidden=false;tr.hidden=true}
+    else if(t&&left<tot){tg.textContent="▶ Seguir";tg.dataset.act="go";tm.hidden=true;tr.hidden=false}
+    else{tg.textContent="▶ Iniciar timer";tg.dataset.act="go";tm.hidden=true;tr.hidden=true}
+    $("#runhint").hidden=!run}
+  const b=$("#tbanners");if(b){const others=Object.entries(TM).filter(([k,t])=>+k!==step&&(t.run||t.done));
+    b.innerHTML=others.map(([k,t])=>`<button class="tbanner ${t.done?"done":""}" data-goto="${k}">⏱ Timer del paso ${+k+1}: <b class="mono">${t.done?"¡terminó!":fmt(t.left)}</b><span>Ver ›</span></button>`).join("")}
+}
 const hl=t=>esc(t).replace(/(\d+(?:[.,]\d+)?\s?°C)/g,"<mark>$1</mark>").replace(/(\d+(?:[–-]\d+)?\s(?:minutos?|min|horas?|segundos))/g,"<mark>$1</mark>");
+function stepTemp(t){const m=t.match(/(\d{2,3})\s?°C/);if(m)return +m[1];return /(cociná|precalent|freidora|canasto|dorar|gratin|horne)/i.test(t)?cur.t:0}
 function ingDrawer(){const d=$("#drawer");if(!d)return;const f=por/cur.por;
   d.innerHTML=`<div class="drawer-box"><div class="cook-top"><b style="font-family:var(--f-display);font-size:1.3rem">🧾 Ingredientes · ${por} porciones</b><button class="close" id="dx">Cerrar</button></div>
   <ul>${cur.ing.map(i=>`<li><span class="mono">${i[0]===1&&i[1]===""&&/rocío|sal y|a gusto/.test(i[2])?"":qtyF(i[0],i[1],f)}</span> ${esc(i[2])}</li>`).join("")}</ul></div>`;
@@ -2153,44 +2216,63 @@ let swipeX=null,swipeY=null;
 function bindSwipe(){const c=$("#cook");if(c.dataset.sw)return;c.dataset.sw=1;
   c.addEventListener("touchstart",e=>{if(e.touches.length!==1||!$("#drawer")||!$("#drawer").hidden)return;swipeX=e.touches[0].clientX;swipeY=e.touches[0].clientY},{passive:true});
   c.addEventListener("touchend",e=>{if(swipeX===null)return;const dx=e.changedTouches[0].clientX-swipeX,dy=e.changedTouches[0].clientY-swipeY;swipeX=null;
-    if(Math.abs(dx)>70&&Math.abs(dy)<60&&$("#nx")){if(dx<0)$("#nx").click();else if(!$("#pv2").disabled)$("#pv2").click()}},{passive:true})}
+    if(Math.abs(dx)>70&&Math.abs(dy)<60&&$("#nx")){if(dx<0)$("#nx").click();else if($("#pv2"))$("#pv2").click()}},{passive:true});
+  c.addEventListener("click",e=>{const g=e.target.closest("[data-goto]");if(g){step=+g.dataset.goto;drawCook()}})}
+function exitBtn(){let armed=false;$("#xc").onclick=e=>{if(anyRun()&&!armed){armed=true;e.currentTarget.textContent="¿Salir? Se cortan los timers";e.currentTarget.classList.add("warn");
+  const el=e.currentTarget;setTimeout(()=>{armed=false;if(el.isConnected){el.textContent="✕ Salir";el.classList.remove("warn")}},3500);return}endCook()}}
+function cookTop(temp){return `<div class="cook-top"><button class="close exit" id="xc">✕ Salir</button>${temp?`<span class="tempchip">🌡 Freidora a ${temp} °C</span>`:`<span class="tempchip off">Sin freidora en este paso</span>`}</div>`}
 function drawCook(){bindSwipe();
   if(step>=cur.st.length){resetT();return drawDone()}
-  const s=cur.st[step];
-  $("#cook").innerHTML=`<div class="cook-top"><span class="tempchip">🌡 Freidora a ${cur.t} °C</span><span style="display:flex;gap:8px"><button class="close" id="ic" aria-label="Ver ingredientes">🧾</button>${HAS_TTS?`<button class="close" id="vc" aria-pressed="${st.voice}" aria-label="Leer en voz alta">${st.voice?"🔊":"🔇"}</button>`:""}<button class="close" id="xc">Salir</button></span></div>
-    <button class="tbanner" id="tbanner" hidden></button>
-    <div class="progress">${cur.st.map((_,k)=>`<i class="${k<=step?"on":""}"></i>`).join("")}</div>
+  if(step<0){const pre=/precalent/i.test(cur.st.map(x=>x[0]).join(" "));
+    $("#cook").innerHTML=`${cookTop(cur.t)}
+    <div class="cook-main"><div class="bigfood" aria-hidden="true">${esc(cur.e)}</div><span class="n">Antes de empezar</span>
+     <ol class="prep">
+      <li><b>1</b><span>${pre?`La freidora va a <mark>${cur.t} °C</mark>. Uno de los pasos te avisa cuándo precalentarla.`:`Prendé la freidora a <mark>${cur.t} °C</mark> y dejala precalentar <mark>3 minutos</mark> mientras preparás todo.`}</span></li>
+      <li><b>2</b><span>Tené a mano los ingredientes. <button class="inl" id="prepIng">🧾 Ver los ${cur.ing.length}</button></span></li>
+      <li><b>3</b><span>Tocá <b>Empezar</b> y seguí los pasos. Cuando un paso tenga tiempo, aparece el timer.</span></li>
+     </ol>
+     <small class="swipehint">Podés pasar de paso deslizando el dedo a los costados.</small></div>
+    <div class="drawer" id="drawer" hidden></div>
+    <div class="cook-nav"><button class="next" id="nx">Empezar →</button></div>`;
+    exitBtn();$("#nx").onclick=()=>{buzz();step=0;drawCook()};$("#prepIng").onclick=ingDrawer;
+    if(st.voice)say(pre?`Vamos a cocinar ${cur.n}. La freidora va a ${cur.t} grados.`:`Vamos a cocinar ${cur.n}. Prendé la freidora a ${cur.t} grados.`);return}
+  const s=cur.st[step];const hm=halfMsg(s[0]);
+  $("#cook").innerHTML=`${cookTop(stepTemp(s[0]))}
+    <div class="cook-tools"><button id="ic">🧾 Ingredientes</button>${HAS_TTS?`<button id="vc" aria-pressed="${st.voice}">${st.voice?"🔊 Voz activada":"🔇 Leer en voz alta"}</button>`:""}</div>
+    <div class="tbanners" id="tbanners"></div>
+    <div class="progress" aria-hidden="true">${cur.st.map((_,k)=>`<i class="${k<=step?"on":""}"></i>`).join("")}</div>
     <div class="cook-main"><span class="n">Paso ${step+1} de ${cur.st.length}</span><p>${hl(s[0])}</p>
       ${s[1]?`<div class="timer"><div class="ring" id="ring"><svg viewBox="0 0 190 190"><circle cx="95" cy="95" r="84" fill="none" stroke="var(--panel-line)" stroke-width="12"/><circle id="arc" cx="95" cy="95" r="84" fill="none" stroke="var(--sun)" stroke-width="12" stroke-linecap="round" stroke-dasharray="${CR}" stroke-dashoffset="0"/></svg><div class="t" id="tt">${fmt(s[1])}</div></div>
-        <div class="tbtns"><button class="go" id="tg">▶ Iniciar timer</button><button id="tm">+1 min</button><button id="tr">Reiniciar</button></div>
-        <small style="color:var(--panel-muted)">Podés pasar al paso siguiente: el timer sigue corriendo.</small></div>`:""}
+        <div class="tbtns"><button class="go" id="tg">▶ Iniciar timer</button><button id="tm" hidden>+1 min</button><button id="tr" hidden>Volver a empezar</button></div>
+        ${hm&&s[1]>=180?`<small class="halfinfo">🔔 A mitad del tiempo te avisamos: ${hm}.</small>`:""}
+        <small class="runhint" id="runhint" hidden>Podés pasar al paso siguiente: el timer sigue contando.</small></div>`:""}
     </div>
     ${step<cur.st.length-1?`<div class="nextprev"><span>Después</span>${esc(cur.st[step+1][0])}</div>`:`<div class="nextprev"><span>Último paso</span>Cuando termines, tocá “Terminé”.</div>`}
     <div class="drawer" id="drawer" hidden></div>
-    <div class="cook-nav"><button id="pv2" ${step===0?"disabled":""}>← Anterior</button><button class="next" id="nx">${step===cur.st.length-1?"Terminé ✓":"Siguiente →"}</button></div>`;
-  $("#xc").onclick=endCook;$("#pv2").onclick=()=>{if(step>0){step--;drawCook()}};
+    <div class="cook-nav"><button id="pv2">← ${step===0?"Inicio":"Anterior"}</button><button class="next" id="nx">${step===cur.st.length-1?"Terminé ✓":"Siguiente →"}</button></div>`;
+  exitBtn();$("#pv2").onclick=()=>{step--;drawCook()};
   $("#nx").onclick=()=>{buzz();step++;drawCook()};
   $("#ic").onclick=ingDrawer;
-  $("#tbanner").onclick=()=>{step=T.step;drawCook()};
   if(HAS_TTS){$("#vc").onclick=()=>{st.voice=!st.voice;SS("aire-voice",st.voice);if(!st.voice)speechSynthesis.cancel();drawCook()};if(st.voice)say(`Paso ${step+1}. ${s[0]}`)}
   if(s[1]){
-    const mine=()=>{if(T.step!==step){resetT();T.step=step;T.tot=T.left=s[1]}};
-    $("#tg").onclick=()=>{mine();if(T.done)return;if(T.iv)stopT();else T.iv=setInterval(tTick,1000);tUI()};
-    $("#tm").onclick=()=>{mine();T.left+=60;T.tot=Math.max(T.tot,T.left);if(T.done){T.done=false;T.iv=setInterval(tTick,1000)}tUI()};
-    $("#tr").onclick=()=>{if(T.step===step){stopT();T.left=T.tot=s[1];T.done=false}tUI()};
+    const mine=()=>{if(!TM[step])TM[step]={left:s[1],tot:s[1],run:false,done:false,half:false,flip:halfMsg(s[0])};return TM[step]};
+    $("#tg").onclick=e=>{const a=e.currentTarget.dataset.act;if(a==="next"){$("#nx").click();return}const t=mine();if(t.run)t.run=false;else if(!t.done)t.run=true;ensureTick();tUI()};
+    $("#tm").onclick=()=>{const t=mine();t.left+=60;t.tot=Math.max(t.tot,t.left);if(t.done){t.done=false;t.run=true}ensureTick();tUI()};
+    $("#tr").onclick=()=>{delete TM[step];ensureTick();tUI()};
   }
+  $(".cook-main").scrollTop=0;
   tUI();
 }
 function drawDone(){
   const first=!st.made.has(cur.id);st.made.add(cur.id);SS("aire-made",[...st.made]);render();
   const next=R.filter(r=>!st.made.has(r.id)&&(r.cat===cur.cat||r.lvl===cur.lvl)).slice(0,3);
-  $("#cook").innerHTML=`<div class="cook-top"><span></span><button class="close" id="xc">Cerrar</button></div>
-   <div class="cook-main"><div class="bigfood" aria-hidden="true">${cur.e}</div><p>¡A comer!</p>
+  $("#cook").innerHTML=`<div class="cook-top"><button class="close exit" id="xc">✕ Cerrar</button></div>
+   <div class="cook-main"><div class="bigfood" aria-hidden="true">${esc(cur.e)}</div><p>¡A comer!</p>
     <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="color:var(--panel-muted);font-weight:700">¿Cómo te salió?</span><div class="stars big" id="doneStars">${starsHTML(st.rate[cur.id]||0)}</div></div>
-    <span style="color:var(--panel-muted);max-width:40ch">${first?`Sumaste ${esc(cur.n)} a tu lista. Ya hiciste ${st.made.size} de ${R.length} recetas.`:`Otra vez ${esc(cur.n)}. Se nota que salió bien.`}</span>
-    ${next.length?`<div style="width:100%"><span class="label" style="color:var(--panel-muted)">Para la próxima</span><div class="related" style="justify-content:center;margin-top:10px">${next.map(r=>`<button data-next="${r.id}" style="background:var(--panel-2);border-color:var(--panel-line);color:var(--panel-ink)"><span aria-hidden="true">${r.e}</span><small>${esc(r.n)}</small></button>`).join("")}</div></div>`:""}
+    <span style="color:var(--panel-muted);max-width:40ch">${first?`Quedó marcada como hecha.`:`Otra vez ${esc(cur.n)}. Se nota que salió bien.`}</span>
+    ${next.length?`<div style="width:100%"><span class="label" style="color:var(--panel-muted)">Para la próxima</span><div class="related" style="justify-content:center;margin-top:10px">${next.map(r=>`<button data-next="${r.id}" style="background:var(--panel-2);border-color:var(--panel-line);color:var(--panel-ink)"><span aria-hidden="true">${esc(r.e)}</span><small>${esc(r.n)}</small></button>`).join("")}</div></div>`:""}
    </div>`;
-  $("#xc").onclick=()=>{endCook();closeSheet()};
+  $("#xc").onclick=()=>{endCook(true);closeSheet(true);popLayers(2)};
   $("#doneStars").onclick=e=>{const b=e.target.closest("[data-star]");if(!b)return;setRate(cur.id,+b.dataset.star);$("#doneStars").innerHTML=starsHTML(st.rate[cur.id]||0);toast("¡Gracias! Lo guardamos en tus notas")};
   if(st.voice)say("¡Listo! A comer.");
   document.querySelectorAll("[data-next]").forEach(b=>b.onclick=()=>{endCook();openSheet(b.dataset.next)});
@@ -2238,7 +2320,7 @@ const SIZES={s:["Chica","hasta 3 litros"],m:["Mediana","4 a 6 litros"],l:["Grand
 function applyBig(){document.documentElement.classList.toggle("bigtext",st.big)}
 function seg(name,opts,val){return `<div class="seg" role="group" data-set="${name}">${opts.map(([v,l,sub])=>`<button data-v="${v}" aria-pressed="${String(v)===String(val)}"><b>${l}</b>${sub?`<small>${sub}</small>`:""}</button>`).join("")}</div>`}
 function openSettings(){
-  $("#scrim").hidden=false;document.body.style.overflow="hidden";
+  openLayer();
   $("#scrim").innerHTML=`<div class="sheet" role="dialog" aria-modal="true" aria-label="Ajustes">
    <div class="sheet-hero" style="--tone:#e4d6ff"><button class="close" id="xs" aria-label="Cerrar">✕</button><div class="food" aria-hidden="true">⚙️</div><h2>Ajustes</h2><p>Para que la app se adapte a vos y a tu freidora.</p></div>
    <div class="sheet-body">
