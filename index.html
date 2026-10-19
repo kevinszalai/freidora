@@ -286,6 +286,36 @@ main .wrap{padding-block:34px 70px;display:flex;flex-direction:column;gap:72px}
 .slot-box{background:var(--sun);color:#1f1b16;border-radius:28px;padding:26px;text-align:center;width:min(360px,100%);border:var(--bw) solid #1f1b16;box-shadow:6px 6px 0 #1f1b16;animation:pop .3s}
 .slot-box .label{color:#4c463e}
 .slot-box{position:relative}
+.createbtn{float:right;margin-left:10px;border:var(--bw) solid var(--line);background:var(--grape);color:#fff;border-radius:999px;padding:9px 16px;font-weight:800;box-shadow:3px 3px 0 var(--shadow)}
+.newmini .mplate{border-bottom-style:dashed}
+.newmini{border-style:dashed}
+.ownbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:-10px}
+.ownbar .pub{flex-basis:100%;background:var(--mint-soft)}
+.editor section{display:flex;flex-direction:column;gap:6px}
+.flabel{display:flex;flex-direction:column;gap:6px;font-weight:800;font-size:.92rem;margin-top:6px}
+.flabel small{font-weight:500;color:var(--muted)}
+.editor input,.editor select,.editor textarea{font:inherit;color:var(--ink);background:var(--surface);border:var(--bw) solid var(--line);border-radius:12px;padding:10px 12px;width:100%;min-width:0}
+.editor textarea{resize:vertical}
+.grid2{display:grid!important;grid-template-columns:1fr 1fr;gap:10px}
+.emojis{display:flex;flex-wrap:wrap;gap:6px}
+.emojis button{width:44px;height:44px;border-radius:12px;border:2px solid var(--hair);background:var(--surface);font-size:1.4rem}
+.emojis button[aria-pressed="true"]{border-color:var(--line);background:var(--sun);transform:scale(1.08)}
+.edrow{display:grid;gap:6px;align-items:start;margin-bottom:8px}
+.ing-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 40px;grid-template-areas:"nm nm rm" "q u rm";padding-bottom:8px;border-bottom:1px solid var(--hair)}
+.ing-row input[type=number]{grid-area:q}.ing-row select{grid-area:u}.ing-row input[type=text]{grid-area:nm}.ing-row .rm{grid-area:rm}
+.step-row{grid-template-columns:30px minmax(0,1fr) 40px;grid-template-areas:"n t r" "n m r"}
+.step-row .sn{grid-area:n;width:30px;height:30px;border-radius:50%;background:var(--sun);color:#1f1b16;display:grid;place-items:center;font-weight:800;border:2px solid var(--line);margin-top:8px}
+.step-row textarea{grid-area:t}
+.step-row .tmin{grid-area:m;display:flex;align-items:center;gap:6px;font-weight:700;color:var(--muted)}
+.step-row .tmin input{width:130px}
+.step-row .rm{grid-area:r}
+.edrow .rm{width:40px;height:44px;border-radius:12px;border:var(--bw) solid var(--line);background:var(--surface);font-weight:800}
+.addrow{flex:none;align-self:flex-start}
+.formerr{background:#ffd6cc;color:#1f1b16;border:var(--bw) solid var(--line);border-radius:12px;padding:10px 14px;font-weight:700;margin:0}
+.plainlist{list-style:none;padding:0;margin:8px 0 0}
+.plainlist li{padding:8px 0;border-bottom:1px solid var(--hair)}
+.sendbtn{display:block;text-align:center;text-decoration:none}
+@media (max-width:420px){.grid2{grid-template-columns:1fr}}
 .topline{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .gear{border:var(--bw) solid #1f1b16;background:rgba(255,255,255,.6);color:#1f1b16;border-radius:999px;padding:7px 14px;font-weight:800}
 .shelves{display:flex;flex-direction:column;gap:30px;margin-bottom:36px}
@@ -422,7 +452,7 @@ main .wrap{padding-block:34px 70px;display:flex;flex-direction:column;gap:72px}
   <div class="wrap">
 
     <section id="recetas">
-      <div class="sec-head"><div><span class="kicker">📖 Recetario</span><h2 id="secTitle">Todas las recetas</h2><p>Tocá cualquier receta para ver qué necesitás y cómo hacerla.</p></div><span class="label" id="count"></span></div>
+      <div class="sec-head"><div><span class="kicker">📖 Recetario</span><button class="createbtn press" data-new="1">✍️ Crear mi receta</button><h2 id="secTitle">Todas las recetas</h2><p>Tocá cualquier receta para ver qué necesitás y cómo hacerla.</p></div><span class="label" id="count"></span></div>
       <div class="progress-strip"><span class="pnum"><span id="statMade">0</span>/<span id="statN">0</span></span><small>recetas hechas</small><div class="meter"><i id="madeBar"></i></div><small>♥ <span id="statFav">0</span> favoritas</small></div>
       <div class="shelves" id="shelves"></div>
       <h3 class="browse-h" id="browseH">Explorá por categoría</h3>
@@ -686,7 +716,7 @@ const R = [
   ing:[[4,"","huevos a temperatura ambiente"],[1,"","bowl con agua y hielo"]],
   st:[["Poné los huevos directo en el canasto, sin precalentar.",0],["Cociná a 140 °C: 11 minutos para yema blanda o 15 para dura.",900],["Pasalos al agua con hielo durante 5 minutos.",300],["Pelalos bajo el agua.",0]],
   tip:"Si salen manchas marrones en la cáscara, bajá a 130 °C."},
- {id:"nido",n:"Huevo en nido de pan",e:"🍳",cat:"Desayuno",tone:"#f5d77e",t:180,m:7,lvl:1,por:2,d:"Un huevo en el centro de una tostada. Brunch en 7 minutos.",k:["huevo","pan","queso"],
+ {id:"nido",n:"Huevo en nido de pan",e:"🍳",cat:"Desayuno",tone:"#f5d77e",t:180,m:7,lvl:1,por:2,d:"Un huevo en el centro de una tostada. Un desayuno completo en 7 minutos.",k:["huevo","pan","queso"],
   ing:[[2,"","rodajas de pan grueso"],[2,"","huevos"],[2,"cda","queso rallado"],[1,"","sal y pimienta"]],
   st:[["Hacé un hueco en el centro del pan con un vaso.",0],["Ponelo sobre papel manteca y rompé un huevo en el hueco.",0],["Espolvoreá queso y cociná a 180 °C durante 6–7 minutos.",390]],
   tip:"6 minutos: yema líquida. 8 minutos: yema firme."},
@@ -770,7 +800,7 @@ const R = [
   ing:[[10,"","bastones de muzzarella congelados"],[1,"","salsa de tomate para mojar"]],
   st:[["Precalentá a 200 °C.",180],["Acomodalos separados, sin que se toquen.",0],["Cociná 5–6 minutos sin dar vuelta.",330]],
   tip:"Sacalos apenas empiecen a abrirse: un minuto más y el queso se escapa."},
- {id:"suprema",n:"Suprema rellena",e:"🐔",cat:"Pollo",tone:"#efc184",t:190,m:18,lvl:2,por:2,d:"Rellena de jamón y queso, cortada se ve espectacular.",k:["pollo","jamón","queso"],
+ {id:"suprema",n:"Suprema rellena",e:"🐔",cat:"Pollo",tone:"#efc184",t:190,m:18,lvl:2,por:2,d:"Rellena de jamón y queso, al cortarla queda muy vistosa.",k:["pollo","jamón","queso"],
   ing:[[2,"","pechugas"],[2,"","fetas de jamón"],[2,"","fetas de queso"],[1,"cda","aceite"],[1,"cdta","pimentón"],[2,"","palillos"]],
   st:[["Abrí cada pechuga como un libro con un cuchillo, sin cortarla del todo.",0],["Rellená con jamón y queso y cerrá con un palillo.",0],["Untá con aceite y pimentón.",0],["Cociná a 190 °C durante 10 minutos.",600],["Dalas vuelta y cociná 8 minutos más.",480]],
   tip:"Sacá los palillos antes de servir. Avisale a quien coma."},
@@ -1284,7 +1314,7 @@ const R = [
   tip:"Poné salsa también en la base del molde: evita que las tortillas se peguen y se resequen abajo."},
  {id:"arrollado",n:"Pollo arrollado relleno",e:"🍥",cat:"Almuerzos",tone:"#f2c4a2",t:180,m:35,lvl:3,por:4,d:"Pollo deshuesado relleno de jamón, queso, morrón y huevo, atado.",k:["pollo","jamón","queso","huevo"],
   ing:[[1,"kg","pechugas o muslos deshuesados abiertos"],[6,"","fetas de jamón cocido"],[6,"","fetas de queso"],[1,"","morrón asado en tiras"],[2,"","huevos duros"],[1,"cdta","pimentón"],[1,"cda","aceite"],[1,"","sal y pimienta"]],
-  st:[["Abrí y aplaná el pollo hasta formar un rectángulo parejo, encimando los trozos. Salpimentá.",0],["Cubrí con jamón, queso, el morrón y los huevos en hilera en el borde. Enrollá apretado y atá con hilo cada 3 cm.",0],["Untá con aceite, pimentón y sal. Cociná a 170 °C durante 20 minutos.",1200],["Dalo vuelta y cociná a 190 °C durante 15 minutos más, hasta 74 °C en el centro.",900],["Reposá 10 minutos y cortá en rodajas. Frío también es buenísimo.",600]],
+  st:[["Abrí y aplaná el pollo hasta formar un rectángulo parejo, encimando los trozos. Salpimentá.",0],["Cubrí con jamón, queso, el morrón y los huevos en hilera en el borde. Enrollá apretado y atá con hilo cada 3 cm.",0],["Untá con aceite, pimentón y sal. Cociná a 170 °C durante 20 minutos.",1200],["Dalo vuelta y cociná a 190 °C durante 15 minutos más, hasta 74 °C en el centro.",900],["Reposá 10 minutos y cortá en rodajas. También se puede comer frío.",600]],
   tip:"Envolvelo en film apretado y dejalo 30 minutos en la heladera antes de atar: así mantiene la forma y no se desarma."},
  {id:"milacaballo",n:"Milanesa a caballo",e:"🍳",cat:"Almuerzos",tone:"#f6d58e",t:200,m:14,lvl:1,por:2,d:"Milanesa de carne crocante con dos huevos con yema blanda arriba.",k:["carne","huevo","pan"],
   ing:[[2,"","milanesas de nalga crudas empanadas"],[4,"","huevos"],[1,"","sal y pimienta"]],
@@ -1658,7 +1688,7 @@ const R = [
   ing:[[12,"","tapas de empanadas de copetín"],[250,"g","dulce de batata"],[1,"","huevo batido"],[2,"cda","azúcar"]],
   st:[["Cortá el dulce de batata en bastones chicos.",0],["Poné un bastón en cada tapa, cerrá y hacé el repulgue o apretá con tenedor.",0],["Pintá con huevo y espolvoreá azúcar.",0],["Cociná a 180 °C durante 12 minutos, dándolas vuelta a la mitad.",720]],
   tip:"Sumá un cubito de queso fresco con el dulce: es el martín fierro de bodegón en versión empanadita."},
- {id:"souffechoco",n:"Soufflé de chocolate",e:"🍫",cat:"Postres",tone:"#a8775a",t:180,m:12,lvl:3,por:4,d:"Se infla en la freidora y se sirve al toque. Para cerrar una cena.",k:["chocolate","huevo"],
+ {id:"souffechoco",n:"Soufflé de chocolate",e:"🍫",cat:"Postres",tone:"#a8775a",t:180,m:12,lvl:3,por:4,d:"Se infla en la freidora y se sirve enseguida. Para cerrar una cena.",k:["chocolate","huevo"],
   ing:[[120,"g","chocolate semiamargo"],[40,"g","manteca"],[3,"","yemas"],[4,"","claras"],[60,"g","azúcar"],[1,"cda","azúcar para los moldes"],[1,"cda","cacao amargo"]],
   st:[["Enmantecá 4 ramequines con pinceladas hacia arriba y cubrí con azúcar.",0],["Derretí el chocolate con la manteca, entibiá y sumá las yemas.",0],["Batí las claras a nieve y agregá el azúcar hasta picos suaves. Incorporá al chocolate en tres veces, con movimientos envolventes.",0],["Llená los moldes hasta el borde, enrasá y pasá el dedo por el contorno.",0],["Cociná a 180 °C durante 12 minutos sin abrir. Espolvoreá cacao y serví de inmediato.",720]],
   tip:"Precalentá la freidora 5 minutos y no la abras en los primeros 8: el golpe de aire frío lo baja."},
@@ -1724,6 +1754,27 @@ const R = [
   tip:"Si salen muchos, hacé dos tandas: amontonados se cocinan al vapor y no se doran."}
 ];
 
+/* Recetas propias: se guardan en este dispositivo y se suman al recetario */
+const PUBLICAR={email:"",whatsapp:""}; // adónde llegan los pedidos de publicación
+const CAT_LIST=["Desayuno","Almuerzos","Pollo","Carnes","Pescado","Verduras","Vegetariano","Congelados","Snacks","Panes","Postres"];
+const UNITS=["","g","kg","ml","cda","cdta","pizca"];
+const TONES={Desayuno:"#f5d9b8",Almuerzos:"#ffc9a8",Pollo:"#ffcf9e",Carnes:"#ffb8a8",Pescado:"#bfe3f5",Verduras:"#c8efb4",Vegetariano:"#d6f5e9",Congelados:"#cfe5ff",Snacks:"#ffe08a",Panes:"#f3d79c",Postres:"#ffd0e6"};
+const KEYMAP=[[/papa/,"papa"],[/batata|boniato/,"batata"],[/pollo|pechuga|muslo|alita|suprema/,"pollo"],[/carne|vacío|bife|lomo|cuadril|nalga|peceto|entraña|picada/,"carne"],[/cerdo|bondiola|panceta|bacon|chorizo|matambrito|costilla/,"cerdo"],[/pescado|merluza|salmón|salmon|atún|atun|langostino|trucha|calamar/,"pescado"],[/huevo/,"huevo"],[/queso|muzza|mozza|ricota|parmesano|cheddar/,"queso"],[/jamón|jamon/,"jamón"],[/pan |pan$|rallado|tostada/,"pan"],[/harina|masa|tapa/,"harina"],[/hojaldre/,"hojaldre"],[/garbanzo|lenteja|poroto/,"garbanzos"],[/banana/,"banana"],[/manzana/,"manzana"],[/chocolate|cacao/,"chocolate"],[/avena/,"avena"],[/tofu/,"tofu"],[/nuez|nueces|maní|mani|almendra/,"frutos secos"],[/congelad/,"congelado"],[/cebolla|zanahoria|zapallo|calabaza|morrón|morron|brócoli|brocoli|berenjena|zucchini|tomate|espinaca|acelga|choclo|hongo|champi|lechuga|repollo|coliflor|puerro|ajo/,"verduras"]];
+function cleanRecipe(o,keepId){ // valida y limpia una receta (propia o recibida por link)
+  if(!o||typeof o!=="object")return null;
+  const str=(v,max)=>String(v==null?"":v).replace(/[<>]/g,"").trim().slice(0,max);
+  const num=(v,a,b,d)=>{v=Number(v);return Number.isFinite(v)?Math.min(b,Math.max(a,v)):d};
+  const ing=(Array.isArray(o.ing)?o.ing:[]).slice(0,40).map(i=>[num(i[0],0,100000,1),UNITS.includes(i[1])?i[1]:"",str(i[2],80)]).filter(i=>i[2]);
+  const stp=(Array.isArray(o.st)?o.st:[]).slice(0,25).map(x=>[str(x[0],400),Math.round(num(x[1],0,86400,0))]).filter(x=>x[0]);
+  const n=str(o.n,70);if(!n||!ing.length||!stp.length)return null;
+  const cat=CAT_LIST.includes(o.cat)?o.cat:"Almuerzos";
+  const e=[...str(o.e,12)].slice(0,4).join("")||"🍽️";
+  const words=norm(ing.map(i=>i[2]).join(" ")+" "+n);
+  const k=[...new Set(KEYMAP.filter(([re])=>re.test(words)).map(x=>x[1]))];
+  return {id:keepId&&/^u[a-z0-9]{4,20}$/.test(o.id)?o.id:"u"+Date.now().toString(36)+Math.random().toString(36).slice(2,5),
+    n,e,cat,tone:/^#[0-9a-f]{6}$/i.test(o.tone)?o.tone:TONES[cat],t:Math.round(num(o.t,80,230,180)/10)*10,m:Math.round(num(o.m,1,600,15)),
+    lvl:[1,2,3].includes(+o.lvl)?+o.lvl:1,por:Math.round(num(o.por,1,30,2)),d:str(o.d,120),k,ing,st:stp,tip:str(o.tip,300),own:true,by:str(o.by,40)};
+}
 const PANTRY=[["papa","🥔","Papas"],["batata","🍠","Batata"],["pollo","🍗","Pollo"],["carne","🥩","Carne"],["cerdo","🥓","Cerdo"],["pescado","🐟","Pescado"],["huevo","🥚","Huevos"],["queso","🧀","Queso"],["jamón","🍖","Jamón"],["pan","🍞","Pan"],["harina","🌾","Harina"],["hojaldre","🥐","Hojaldre"],["verduras","🥦","Verduras"],["garbanzos","🫘","Garbanzos"],["banana","🍌","Bananas"],["manzana","🍎","Manzanas"],["chocolate","🍫","Chocolate"],["avena","🥣","Avena"],["tofu","🧊","Tofu"],["frutos secos","🥜","Frutos secos"],["congelado","❄️","Algo congelado"]];
 
 const QUICK=[["🍟","Papas congeladas","Sacudí a la mitad",200,15],["🍟","Papas caseras en bastones","Remojadas y secas",200,20],["🥔","Papa entera","Pinchada con tenedor",200,40],["🍠","Batata en cubos","",190,18],["🍗","Nuggets congelados","Dar vuelta",200,10],["🍗","Milanesa de pollo","Dar vuelta",200,12],["🥩","Milanesa de carne","Dar vuelta",200,10],["🍗","Pata muslo","74 °C adentro",190,28],["🐔","Pechuga","Reposar 5 min",190,16],["🍖","Alitas","Sacudí 2 veces",200,22],["🍔","Hamburguesa 2 cm","A punto",200,10],["🌭","Chorizo","Pinchado",190,16],["🌭","Salchichas","",180,6],["🥓","Panceta","En una capa",180,8],["🐟","Salmón","Sin dar vuelta",190,9],["🐠","Medallones de merluza","Congelados",200,12],["🦐","Langostinos","Hasta que formen una C",200,7],["🥟","Empanadas caseras","",180,14],["🥟","Empanadas congeladas","",180,16],["🥐","Medialunas congeladas","Levadas",160,12],["🥚","Huevo duro","Agua con hielo después",140,15],["🥚","Huevo pasado por agua","",140,11],["🥦","Brócoli","",190,10],["🎃","Calabaza en cubos","",190,20],["🌽","Choclo","",200,14],["🍆","Berenjena en rodajas","",190,12],["🫑","Morrones","Piel arriba",200,15],["🧅","Cebolla en gajos","",190,12],["🍄","Champiñones","Enteros",180,10],["🫘","Garbanzos","Bien secos",200,15],["🍞","Recalentar pizza","Porción",170,4],["🍞","Pan del día anterior","Lo revive",170,3],["🧀","Provoleta","En molde",200,6],["🍌","Banana","Con cáscara",180,8],["🍎","Manzana asada","",170,18],["🍪","Cookies","",160,8],["🍫","Brownie","Molde 18 cm",160,20],["🥜","Maní o almendras","Mover a la mitad",160,6]];
@@ -1745,6 +1796,8 @@ const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const fmt=s=>{const m=Math.floor(s/60),x=s%60;return m>=60?Math.floor(m/60)+" h "+(m%60)+" min":m+":"+String(x).padStart(2,"0")};
 const norm=s=>s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+const MINE=(LS("aire-mine")||[]).map(o=>cleanRecipe(o,true)).filter(Boolean);
+R.push(...MINE);
 const LV=["","Fácil","Media","Desafío"];
 const lvl=n=>`<span class="lvl" title="Dificultad: ${LV[n]}">${[1,2,3].map(i=>`<i class="${i<=n?"on":""}"></i>`).join("")}<em>${LV[n]}</em></span>`;
 const isStarter=r=>r.lvl===1&&r.m<=15;
@@ -1768,7 +1821,7 @@ function cardHTML(r,i){return `<div class="card sticker press" role="button" tab
   <div class="plate" style="--tone:${r.tone}">
     <button class="heart" data-fav="${r.id}" aria-pressed="${st.favs.has(r.id)}" aria-label="Guardar en favoritas">${st.favs.has(r.id)?"♥":"♡"}</button>
     <span class="food" aria-hidden="true">${r.e}</span>
-    ${isStarter(r)?`<span class="tag new">🌱 Para empezar</span>`:""}${st.made.has(r.id)?`<span class="tag made">✓ La hiciste</span>`:""}</div>
+    ${r.own?`<span class="tag new" style="background:#e4d6ff">✍️ ${r.by?esc(r.by):"Tuya"}</span>`:isStarter(r)?`<span class="tag new">🌱 Para empezar</span>`:""}${st.made.has(r.id)?`<span class="tag made">✓ La hiciste</span>`:""}</div>
   <div class="body"><span class="label">${r.cat}</span><h3>${esc(r.n)}</h3><p>${esc(r.d)}</p>
     <div class="pills"><span class="pill">⏱ ${r.m} min</span><span class="pill">🌡 ${r.t}°</span><span class="pill l${r.lvl}">${LV[r.lvl]}</span>${st.rate[r.id]?`<span class="pill">${"★".repeat(st.rate[r.id])}</span>`:""}</div></div></div>`}
 
@@ -1792,13 +1845,16 @@ const dayKey=new Date().toDateString();
 const hsh=s=>{let h=0;for(const c of s)h=(h*31+c.charCodeAt(0))|0;return h};
 const daily=a=>a.slice().sort((x,y)=>hsh(x.id+dayKey)-hsh(y.id+dayKey));
 function colRecipes(c){return c.ids?c.ids.map(id=>R.find(r=>r.id===id)).filter(Boolean):R.filter(c.f)}
-const colById=id=>id==="now"?nowCol():COLS.find(c=>c.id===id);
+const colById=id=>id==="now"?nowCol():id==="mine"?{id:"mine",t:"✍️ Mis recetas",d:"",f:r=>!!r.own}:COLS.find(c=>c.id===id);
 function miniHTML(r){return `<button class="mini sticker" data-open="${r.id}"><span class="mplate" style="--tone:${r.tone}"><span aria-hidden="true">${r.e}</span>${st.made.has(r.id)?`<i class="mdone">✓</i>`:""}</span><b>${esc(r.n)}</b><small>⏱ ${r.m} min · ${LV[r.lvl]}</small></button>`}
 function shelfHTML(t,d,list,colId){return list.length?`<section class="shelf"><div class="shelf-h"><div><h3>${t}</h3>${d?`<p>${d}</p>`:""}</div>${colId?`<button class="seeall" data-col="${colId}">Ver todas <b>${list.length}</b></button>`:""}</div><div class="shelf-row">${list.slice(0,12).map(miniHTML).join("")}</div></section>`:""}
 function drawShelves(){
   const rec=st.recent.map(id=>R.find(r=>r.id===id)).filter(Boolean);
   const now=nowCol();
   let h=shelfHTML(now.t,now.d,daily(R.filter(now.f)),"now");
+  const mine=R.filter(r=>r.own);
+  h+=`<section class="shelf"><div class="shelf-h"><div><h3>✍️ Mis recetas</h3><p>${mine.length?"Las que creaste o te compartieron":"¿Tenés una receta que te sale muy rica? Cargala acá"}</p></div>${mine.length?`<button class="seeall" data-col="mine">Ver todas <b>${mine.length}</b></button>`:""}</div>
+    <div class="shelf-row"><button class="mini sticker newmini" data-new="1"><span class="mplate" style="--tone:var(--soft)"><span aria-hidden="true">➕</span></span><b>Crear mi receta</b><small>Con modo cocina y timer</small></button>${mine.slice().reverse().slice(0,11).map(miniHTML).join("")}</div></section>`;
   if(rec.length)h+=shelfHTML("👀 Seguí donde quedaste","Lo último que miraste",rec,null);
   const favs=R.filter(r=>st.favs.has(r.id));if(favs.length)h+=shelfHTML("♥ Tus favoritas","",favs,null);
   COLS.forEach(c=>{const L=colRecipes(c);h+=shelfHTML(c.t,c.d,c.ids?L:daily(L),c.id)});
@@ -1827,6 +1883,7 @@ function render(keep){
 }
 document.addEventListener("click",e=>{
   const sc=e.target.closest("[data-col]");if(sc){openCol(sc.dataset.col);return}
+  if(e.target.closest("[data-new]")){openEditor();return}
   const qs=e.target.closest("[data-qs]");if(qs){const w=qs.dataset.qs;if(w==="rápidas"){clearFilters(true);st.fast=true;$("#fFast").setAttribute("aria-pressed","true");render()}else{$("#q").value=w;st.q=w;st.limit=12;render()}return}
   const h=e.target.closest("[data-fav]");
   if(h){e.stopPropagation();toggleFav(h.dataset.fav);h.classList.add("boing");return}
@@ -1889,7 +1946,7 @@ function openSheet(id){
   const made=st.made.has(cur.id);
   $("#scrim").hidden=false;$("#scrim").innerHTML=`<div class="sheet" role="dialog" aria-modal="true" aria-label="${esc(cur.n)}">
     <div class="sheet-hero" style="--tone:${cur.tone}"><button class="close" id="xs" aria-label="Cerrar">✕</button>
-      <div class="food" aria-hidden="true">${cur.e}</div><div><span class="label">${cur.cat}${made?" · ✓ ya la hiciste":""}</span></div>
+      <div class="food" aria-hidden="true">${esc(cur.e)}</div><div><span class="label">${esc(cur.cat)}${cur.own?" · ✍️ "+(cur.by?"de "+esc(cur.by):"tu receta"):""}${made?" · ✓ ya la hiciste":""}</span></div>
       <h2>${esc(cur.n)}</h2><p>${esc(cur.d)}</p>
       <div class="spec"><div><b>${cur.t}°</b><small>Temperatura</small></div><div><b>${cur.m} min</b><small>Tiempo</small></div><div><b>${cur.st.length}</b><small>Pasos</small></div><div><b style="font-size:1rem;line-height:1.56">${LV[cur.lvl]}</b><small>Nivel</small></div></div>
     </div>
@@ -1897,12 +1954,13 @@ function openSheet(id){
       <div class="sheet-actions"><button class="start press" id="go">👩‍🍳 Cocinar paso a paso</button><button class="sq" id="sheetFav" aria-pressed="${st.favs.has(cur.id)}" aria-label="Favorita">${st.favs.has(cur.id)?"♥":"♡"}</button></div>
       ${st.size==="s"&&cur.por>=3&&!["Postres","Panes"].includes(cur.cat)?`<div class="sizenote">🧺 <span>En tu freidora chica, hacé esta receta en <b>2 tandas</b> para que quede crocante.</span></div>`:st.size==="l"?`<div class="sizenote">🧺 <span>Tu freidora es grande: entra en una tanda. Revisá <b>1–2 minutos antes</b> del final.</span></div>`:st.size==="s"?`<div class="sizenote">🧺 <span>En freidoras chicas el calor está más cerca: revisá <b>1 minuto antes</b>.</span></div>`:""}
       <div class="sheet-more"><button class="ghost" id="sheetCart"></button><button class="ghost" id="sheetShare">📤 Compartir</button></div>
+      ${cur.own?`<div class="ownbar"><button class="ghost" id="ownEdit">✏️ Editar</button><button class="ghost" id="ownDel">🗑 Borrar</button>${PUBLICAR.email||PUBLICAR.whatsapp?`<button class="ghost pub" id="ownPub">📨 Pedir que se publique</button>`:""}</div>`:""}
       <section><div class="sec-head" style="margin:0;align-items:center"><h3>Ingredientes</h3>
         <div class="servings"><button id="pm" aria-label="Menos porciones">−</button><b id="pv">${por}</b><span class="label">porciones</span><button id="pp" aria-label="Más porciones">+</button></div></div>
         <div class="ingbar"><i id="ingbar"></i></div><small style="color:var(--muted)" id="ingtxt">Marcá lo que ya tenés listo.</small>
         <ul class="ing" id="ing"></ul></section>
       <section><h3>Cómo se hace</h3><ol class="steps">${cur.st.map(s=>`<li><div>${esc(s[0])}${s[1]?`<br><small>⏱ ${fmt(s[1])}</small>`:""}</div></li>`).join("")}</ol></section>
-      <div class="note"><b>Truco: </b>${esc(cur.tip)}</div>
+      ${cur.tip?`<div class="note"><b>Truco: </b>${esc(cur.tip)}</div>`:""}
       <section class="mine"><h3>Mis notas</h3><div class="stars" id="sheetStars" role="group" aria-label="¿Cómo te salió?">${starsHTML(st.rate[cur.id]||0)}</div>
         <label for="notes" class="label" style="display:block;margin:10px 0 6px">Para la próxima vez</label><textarea id="notes" rows="3" placeholder="Ej.: en mi freidora necesita 2 minutos más">${esc(st.notes[cur.id]||"")}</textarea></section>
       ${rel.length?`<section><h3 style="margin-bottom:10px">Más de ${cur.cat.toLowerCase()}</h3><div class="related">${rel.map(r=>`<button data-open="${r.id}"><span aria-hidden="true">${r.e}</span><small>${esc(r.n)}</small></button>`).join("")}</div></section>`:""}
@@ -1915,6 +1973,10 @@ function openSheet(id){
   $("#ing").onchange=ingProg;
   cartBtn();$("#sheetCart").onclick=()=>{toggleCart(cur.id,por);cartBtn()};
   $("#sheetShare").onclick=shareRecipe;
+  if(cur.own){$("#ownEdit").onclick=()=>openEditor(cur.id);
+    let armed=false;$("#ownDel").onclick=e=>{if(!armed){armed=true;e.target.textContent="Tocá de nuevo para borrar";e.target.classList.add("warn");setTimeout(()=>{armed=false;if(e.target.isConnected){e.target.textContent="🗑 Borrar";e.target.classList.remove("warn")}},3000);return}
+      deleteMine(cur.id)};
+    if($("#ownPub"))$("#ownPub").onclick=requestPublish}
   $("#sheetStars").onclick=e=>{const b=e.target.closest("[data-star]");if(!b)return;setRate(cur.id,+b.dataset.star);$("#sheetStars").innerHTML=starsHTML(st.rate[cur.id]||0)};
   $("#notes").oninput=e=>{st.notes[cur.id]=e.target.value;if(!e.target.value)delete st.notes[cur.id];SS("aire-notes",st.notes)};
   try{history.replaceState(null,"","#"+cur.id)}catch(e){}
@@ -1926,14 +1988,109 @@ function drawIng(){$("#pv").textContent=por;$("#ing").innerHTML=cur.ing.map((i,k
 function ingProg(){const a=[...document.querySelectorAll("#ing input")],c=a.filter(x=>x.checked).length;$("#ingbar").style.width=(c/a.length*100)+"%";
   $("#ingtxt").textContent=c===a.length?"¡Tenés todo! Ya podés cocinar.":c?`${c} de ${a.length} listos`:"Marcá lo que ya tenés listo."}
 function closeSheet(){$("#scrim").hidden=true;$("#scrim").innerHTML="";document.body.style.overflow="";if(!$("#shelves").hidden)drawShelves();try{if(R.some(r=>"#"+r.id===location.hash))history.replaceState(null,"",location.pathname+location.search)}catch(e){}}
+function saveMine(){SS("aire-mine",R.filter(r=>r.own).map(({own,...r})=>r))}
+function deleteMine(id){const i=R.findIndex(r=>r.id===id);if(i<0)return;R.splice(i,1);saveMine();st.favs.delete(id);SS("aire-favs",[...st.favs]);st.cart=st.cart.filter(c=>c.id!==id);saveCart();closeSheet();render();toast("Receta borrada")}
+const EMOJIS="🍗🥩🥓🌭🍔🍟🥔🍠🌽🥦🥕🍆🫑🧅🍄🧀🥚🍳🥞🍞🥐🥖🥨🥟🌮🌯🍕🥧🐟🦐🦑🧆🥗🍰🧁🍪🍫🍩🍎🍌🍐🍯⭐🔥".match(/\p{Extended_Pictographic}/gu);
+function edRow(i){return `<div class="edrow ing-row"><input type="number" inputmode="decimal" min="0" step="any" placeholder="Cantidad" value="${i?i[0]:""}" aria-label="Cantidad"><select aria-label="Unidad">${UNITS.map(u=>`<option value="${u}" ${i&&i[1]===u?"selected":""}>${u||"unid."}</option>`).join("")}</select><input type="text" placeholder="Ingrediente" value="${i?esc(i[2]):""}" aria-label="Ingrediente" maxlength="80"><button type="button" class="rm" aria-label="Quitar">✕</button></div>`}
+function edStep(x,k){return `<div class="edrow step-row"><span class="sn">${k+1}</span><textarea rows="2" placeholder="Ej.: Cociná a 200 °C durante 10 minutos." aria-label="Paso" maxlength="400">${x?esc(x[0]):""}</textarea><label class="tmin">⏱ Timer<input type="number" min="0" max="600" placeholder="minutos" value="${x&&x[1]?Math.round(x[1]/60):""}" aria-label="Minutos de timer"></label><button type="button" class="rm" aria-label="Quitar">✕</button></div>`}
+function openEditor(id){
+  const editing=id?R.find(r=>r.id===id):null;
+  const d=editing||LS("aire-draft")||{e:"🍗",cat:"Pollo",t:180,m:15,lvl:1,por:2,ing:[],st:[]};
+  $("#scrim").hidden=false;document.body.style.overflow="hidden";
+  $("#scrim").innerHTML=`<div class="sheet" role="dialog" aria-modal="true" aria-label="${editing?"Editar receta":"Crear mi receta"}">
+   <div class="sheet-hero" style="--tone:#e4d6ff"><button class="close" id="xs" aria-label="Cerrar">✕</button><div class="food" id="edEmojiBig" aria-hidden="true">${esc(d.e||"🍗")}</div><h2>${editing?"Editar receta":"Crear mi receta"}</h2><p>${editing?"Cambiá lo que quieras y guardá.":"Cargala una vez y cocinala con el modo paso a paso, timer y voz. Se guarda en este dispositivo."}</p></div>
+   <form class="sheet-body editor" id="edForm" novalidate>
+    <section><label class="flabel" for="edN">Nombre de la receta</label><input id="edN" type="text" maxlength="70" placeholder="Ej.: Milanesas de la abuela" value="${esc(d.n||"")}">
+      <label class="flabel" for="edD">Una línea que la describa <small>(opcional)</small></label><input id="edD" type="text" maxlength="120" placeholder="Ej.: Crocantes y jugosas, como los domingos" value="${esc(d.d||"")}"></section>
+    <section><span class="flabel">Elegí un dibujito</span><div class="emojis" id="edE" role="group" aria-label="Dibujito">${EMOJIS.map(x=>`<button type="button" data-e="${x}" aria-pressed="${x===d.e}">${x}</button>`).join("")}</div></section>
+    <section class="grid2"><label class="flabel" for="edCat">Categoría<select id="edCat">${CAT_LIST.map(c=>`<option ${c===d.cat?"selected":""}>${c}</option>`).join("")}</select></label>
+      <label class="flabel" for="edPor">Porciones<input id="edPor" type="number" min="1" max="30" value="${d.por||2}"></label>
+      <label class="flabel" for="edT">Temperatura (°C)<input id="edT" type="number" min="80" max="230" step="10" value="${d.t||180}"></label>
+      <label class="flabel" for="edM">Minutos en la freidora<input id="edM" type="number" min="1" max="600" value="${d.m||15}"></label></section>
+    <section><span class="flabel">Dificultad</span>${seg("edLvl",[[1,"Fácil"],[2,"Media"],[3,"Desafío"]],d.lvl||1)}</section>
+    <section><h3>Ingredientes</h3><p class="hint">Cantidad, unidad y nombre. Usá "unid." para cosas que se cuentan (2 huevos).</p><div id="edIng">${(d.ing&&d.ing.length?d.ing:[null,null,null]).map(edRow).join("")}</div><button type="button" class="ghost addrow" id="addIng">+ Sumar ingrediente</button></section>
+    <section><h3>Pasos</h3><p class="hint">Si un paso tiene espera, poné los minutos y el modo cocina te arma el timer.</p><div id="edSt">${(d.st&&d.st.length?d.st:[null,null]).map(edStep).join("")}</div><button type="button" class="ghost addrow" id="addSt">+ Sumar paso</button></section>
+    <section><label class="flabel" for="edTip">Tu truco <small>(opcional)</small></label><textarea id="edTip" rows="2" maxlength="300" placeholder="Ej.: El secreto es dejarlas reposar 10 minutos antes.">${esc(d.tip||"")}</textarea>
+      <label class="flabel" for="edBy">Tu nombre <small>(opcional, aparece si la compartís)</small></label><input id="edBy" type="text" maxlength="40" placeholder="Ej.: Marta" value="${esc(d.by||"")}"></section>
+    <p class="formerr" id="edErr" role="alert" hidden></p>
+    <div class="sheet-actions"><button type="submit" class="start press">${editing?"💾 Guardar cambios":"✅ Guardar mi receta"}</button></div>
+   </form></div>`;
+  let emoji=d.e||"🍗";
+  const lvlGroup=$("[data-set=edLvl]");let lvl=d.lvl||1;
+  lvlGroup.onclick=e=>{const b=e.target.closest("[data-v]");if(!b)return;lvl=+b.dataset.v;lvlGroup.querySelectorAll("[data-v]").forEach(x=>x.setAttribute("aria-pressed",x===b));draft()};
+  $("#edE").onclick=e=>{const b=e.target.closest("[data-e]");if(!b)return;emoji=b.dataset.e;$("#edE").querySelectorAll("[data-e]").forEach(x=>x.setAttribute("aria-pressed",x===b));$("#edEmojiBig").textContent=emoji;draft()};
+  const renum=()=>document.querySelectorAll("#edSt .sn").forEach((x,k)=>x.textContent=k+1);
+  $("#addIng").onclick=()=>{$("#edIng").insertAdjacentHTML("beforeend",edRow(null));$("#edIng").lastElementChild.querySelector("input[type=text]").focus()};
+  $("#addSt").onclick=()=>{$("#edSt").insertAdjacentHTML("beforeend",edStep(null,$("#edSt").children.length));$("#edSt").lastElementChild.querySelector("textarea").focus()};
+  $("#edForm").addEventListener("click",e=>{const rm=e.target.closest(".rm");if(!rm)return;const row=rm.closest(".edrow"),box=row.parentElement;if(box.children.length>1)row.remove();else row.querySelectorAll("input,textarea").forEach(x=>x.value="");renum();draft()});
+  const collect=()=>({id:editing?editing.id:undefined,n:$("#edN").value,d:$("#edD").value,e:emoji,cat:$("#edCat").value,por:$("#edPor").value,t:$("#edT").value,m:$("#edM").value,lvl,
+    ing:[...document.querySelectorAll("#edIng .ing-row")].map(r=>{const q=r.querySelectorAll("input");return [q[0].value===""?1:+String(q[0].value).replace(",","."),r.querySelector("select").value,q[1].value]}),
+    st:[...document.querySelectorAll("#edSt .step-row")].map(r=>[r.querySelector("textarea").value,(+r.querySelector("input").value||0)*60]),tip:$("#edTip").value,by:$("#edBy").value});
+  const draft=()=>{if(!editing)SS("aire-draft",collect())};
+  $("#edForm").addEventListener("input",draft);
+  $("#xs").onclick=closeSheet;$("#scrim").onclick=e=>{if(e.target.id==="scrim")closeSheet()};
+  $("#edForm").onsubmit=e=>{e.preventDefault();const raw=collect();const err=[];
+    if(!raw.n.trim())err.push("ponele un nombre");
+    if(!raw.ing.some(i=>i[2].trim()))err.push("sumá al menos un ingrediente");
+    if(!raw.st.some(x=>x[0].trim()))err.push("escribí al menos un paso");
+    if(err.length){$("#edErr").hidden=false;$("#edErr").textContent="Para guardarla, "+err.join(", ")+".";$("#edErr").scrollIntoView({block:"center",behavior:"smooth"});return}
+    const r=cleanRecipe({...raw,id:editing?editing.id:undefined},!!editing);
+    if(editing){const i=R.findIndex(x=>x.id===editing.id);R[i]=r}else R.push(r);
+    saveMine();try{localStorage.removeItem("aire-draft")}catch(_){}
+    render();toast(editing?"Cambios guardados":"¡Receta guardada! 🎉");openSheet(r.id);confetti()};
+  $(".sheet").scrollTop=0;$("#edN").focus();
+}
+/* Recibir una receta por link */
+async function openShared(tok){let r=null;try{r=await unpackRecipe(tok)}catch(e){}
+  if(!r){toast("No pudimos abrir esa receta. Pedile a quien te la mandó que la comparta de nuevo.");return}
+  const dupe=R.find(x=>x.own&&x.n===r.n&&JSON.stringify(x.st)===JSON.stringify(r.st));
+  $("#scrim").hidden=false;document.body.style.overflow="hidden";
+  $("#scrim").innerHTML=`<div class="sheet" role="dialog" aria-modal="true" aria-label="Receta compartida">
+   <div class="sheet-hero" style="--tone:${r.tone}"><button class="close" id="xs" aria-label="Cerrar">✕</button><div class="food" aria-hidden="true">${esc(r.e)}</div><span class="label">📩 ${r.by?esc(r.by)+" te compartió":"Te compartieron"} una receta</span><h2>${esc(r.n)}</h2>${r.d?`<p>${esc(r.d)}</p>`:""}
+    <div class="spec"><div><b>${r.t}°</b><small>Temperatura</small></div><div><b>${r.m} min</b><small>Tiempo</small></div><div><b>${r.ing.length}</b><small>Ingredientes</small></div><div><b>${r.st.length}</b><small>Pasos</small></div></div></div>
+   <div class="sheet-body">
+    <div class="sheet-actions"><button class="start press" id="impSave">${dupe?"✓ Ya la tenés · Abrirla":"⬇️ Guardar en mis recetas"}</button></div>
+    <section><h3>Ingredientes</h3><ul class="plainlist">${r.ing.map(i=>`<li><b class="mono">${qtyF(i[0],i[1],1)}</b> ${esc(i[2])}</li>`).join("")}</ul></section>
+    <section><h3>Cómo se hace</h3><ol class="steps">${r.st.map(x=>`<li><div>${esc(x[0])}${x[1]?`<br><small>⏱ ${fmt(x[1])}</small>`:""}</div></li>`).join("")}</ol></section>
+    ${r.tip?`<div class="note"><b>Truco: </b>${esc(r.tip)}</div>`:""}
+    <p class="hint">Es una receta de otra persona: no la revisamos nosotros. Fijate que los tiempos tengan sentido, sobre todo en carnes y pollo.</p>
+   </div></div>`;
+  $("#xs").onclick=closeSheet;$("#scrim").onclick=e=>{if(e.target.id==="scrim")closeSheet()};
+  $("#impSave").onclick=()=>{if(dupe){openSheet(dupe.id);return}R.push(r);saveMine();render();toast("Guardada en tus recetas ✍️");openSheet(r.id)};
+  try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}
+}
+/* Pedir que se publique */
+async function requestPublish(){
+  const link=PUBLIC_URL?PUBLIC_URL+"#"+await packRecipe(cur):"";
+  const body=`Hola! Quiero proponer mi receta para que se sume a la app:\n\n${cur.e} ${cur.n} (${cur.por} porciones)\n🌡 ${cur.t} °C · ⏱ ${cur.m} min · ${LV[cur.lvl]}\n\nIngredientes:\n${cur.ing.map(i=>"• "+qtyF(i[0],i[1],1)+" "+i[2]).join("\n")}\n\nPasos:\n${cur.st.map((x,k)=>(k+1)+". "+x[0]+(x[1]?" ("+fmt(x[1])+")":"")).join("\n")}${cur.tip?"\n\nTruco: "+cur.tip:""}${cur.by?"\n\nDe: "+cur.by:""}${link?"\n\nLink: "+link:""}`;
+  $("#scrim").innerHTML=`<div class="sheet" role="dialog" aria-modal="true" aria-label="Pedir que se publique">
+   <div class="sheet-hero" style="--tone:#d6f5e9"><button class="close" id="xs" aria-label="Cerrar">✕</button><div class="food" aria-hidden="true">📨</div><h2>Pedí que se publique</h2><p>Mandanos tu receta. Si la probamos y sale bien, la sumamos a la app para todos${cur.by?", con tu nombre":""}.</p></div>
+   <div class="sheet-body">
+    ${PUBLICAR.whatsapp?`<a class="start press sendbtn" target="_blank" rel="noopener" href="https://wa.me/${PUBLICAR.whatsapp}?text=${encodeURIComponent(body)}">💬 Mandar por WhatsApp</a>`:""}
+    ${PUBLICAR.email?`<a class="ghost sendbtn" href="mailto:${PUBLICAR.email}?subject=${encodeURIComponent("Receta para publicar: "+cur.n)}&body=${encodeURIComponent(body)}">✉️ Mandar por mail</a><p class="hint">Si no se abre tu mail, copiá el texto y mandalo a <b>${esc(PUBLICAR.email)}</b>.</p>`:""}
+    <button class="ghost" id="pubCopy">📋 Copiar el texto</button>
+    <p class="hint">Revisamos cada receta antes de sumarla. Puede tardar unos días.</p>
+   </div></div>`;
+  $("#xs").onclick=closeSheet;$("#pubCopy").onclick=()=>copyText(body,"Texto copiado");
+}
 function starsHTML(n){return [1,2,3,4,5].map(i=>`<button data-star="${i}" aria-label="${i} de 5" aria-pressed="${i<=n}">${i<=n?"★":"☆"}</button>`).join("")}
 function setRate(id,n){if(st.rate[id]===n)delete st.rate[id];else st.rate[id]=n;SS("aire-rate",st.rate);render()}
 async function copyText(t,msg){try{await navigator.clipboard.writeText(t);toast(msg)}catch(e){
   const ta=document.createElement("textarea");ta.value=t;ta.style.cssText="position:fixed;inset:20% 16px auto;height:50%;z-index:90";document.body.appendChild(ta);ta.select();
   try{document.execCommand("copy");toast(msg)}catch(_){toast("Seleccioná el texto y copialo")}setTimeout(()=>ta.remove(),4000)}}
+const PUBLIC_URL=(()=>{try{return /^https:/.test(location.protocol)&&!/claude|anthropic/.test(location.hostname)?location.origin+location.pathname:""}catch(e){return ""}})();
+const b64u={enc:b=>btoa(String.fromCharCode(...b)).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,""),dec:t=>Uint8Array.from(atob(t.replace(/-/g,"+").replace(/_/g,"/")),c=>c.charCodeAt(0))};
+async function packRecipe(r){const o={n:r.n,e:r.e,cat:r.cat,t:r.t,m:r.m,lvl:r.lvl,por:r.por,d:r.d,ing:r.ing,st:r.st,tip:r.tip,by:r.by||""};
+  let bytes=new TextEncoder().encode(JSON.stringify(o));
+  try{if("CompressionStream" in window){const cs=new Blob([bytes]).stream().pipeThrough(new CompressionStream("deflate-raw"));bytes=new Uint8Array(await new Response(cs).arrayBuffer());return "receta-z"+b64u.enc(bytes)}}catch(e){}
+  return "receta-j"+b64u.enc(bytes)}
+async function unpackRecipe(tok){const kind=tok[7],data=b64u.dec(tok.slice(8));let bytes=data;
+  if(kind==="z"){const ds=new Blob([data]).stream().pipeThrough(new DecompressionStream("deflate-raw"));bytes=new Uint8Array(await new Response(ds).arrayBuffer())}
+  return cleanRecipe(JSON.parse(new TextDecoder().decode(bytes)),false)}
 async function shareRecipe(){
   const f=por/cur.por;
-  const t=`${cur.e} ${cur.n} (${por} porciones)\n🌡 ${cur.t} °C · ⏱ ${cur.m} min\n\nIngredientes:\n${cur.ing.map(i=>"• "+qtyF(i[0],i[1],f)+" "+i[2]).join("\n")}\n\nPasos:\n${cur.st.map((x,k)=>(k+1)+". "+x[0]).join("\n")}\n\nTruco: ${cur.tip}`;
+  let link="";if(PUBLIC_URL)link=cur.own?PUBLIC_URL+"#"+await packRecipe(cur):PUBLIC_URL+"#"+cur.id;
+  const t=`${cur.e} ${cur.n} (${por} porciones)\n🌡 ${cur.t} °C · ⏱ ${cur.m} min\n\nIngredientes:\n${cur.ing.map(i=>"• "+qtyF(i[0],i[1],f)+" "+i[2]).join("\n")}\n\nPasos:\n${cur.st.map((x,k)=>(k+1)+". "+x[0]).join("\n")}${cur.tip?"\n\nTruco: "+cur.tip:""}${link?"\n\n👉 Abrila en la app: "+link:""}`;
   try{if(navigator.share){await navigator.share({title:cur.n,text:t});return}}catch(e){if(e&&e.name==="AbortError")return}
   copyText(t,"Receta copiada. Pegala en WhatsApp o donde quieras.")}
 
@@ -2107,7 +2264,7 @@ $("#installBtn").onclick=async()=>{if(!deferredInstall)return;deferredInstall.pr
 window.addEventListener("appinstalled",()=>{$("#installBtn").hidden=true;toast("¡App instalada!")});
 try{const ios=/iphone|ipad|ipod/i.test(navigator.userAgent),standalone=navigator.standalone||matchMedia("(display-mode: standalone)").matches;
   if(ios&&!standalone&&document.querySelector('link[rel="manifest"]'))$("#iosHint").hidden=false}catch(e){}
-function openFromHash(){try{const h=decodeURIComponent(location.hash.slice(1));if(R.some(r=>r.id===h)&&(!cur||cur.id!==h||$("#scrim").hidden))openSheet(h)}catch(e){}}
+function openFromHash(){try{const h=decodeURIComponent(location.hash.slice(1));if(/^receta-[zj][A-Za-z0-9_-]+$/.test(h)){openShared(h);return}if(R.some(r=>r.id===h)&&(!cur||cur.id!==h||$("#scrim").hidden))openSheet(h)}catch(e){}}
 openFromHash();window.addEventListener("hashchange",openFromHash);
 try{const navs=[...document.querySelectorAll(".nav a")];const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting)navs.forEach(a=>a.classList.toggle("on",a.dataset.sec===en.target.id))}),{rootMargin:"-40% 0px -55% 0px"});
 document.querySelectorAll("main section[id]").forEach(s=>io.observe(s))}catch(e){}
